@@ -1,7 +1,15 @@
-div.body {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  background-color: #ebebeb;
+div.body-app {
+  background: #ebebeb;
+}
+
+header {
+  color: #fff;
+  background: #11064d;
+}
+
+button:focus {
+  border: none;
+}
+.navbar-dark .navbar-toggler {
+  border: none;
 }

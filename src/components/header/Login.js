@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "reactstrap";
 
 import "./Login.css";
 
@@ -10,11 +11,15 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>Log In</div>
-      </div>
+      <Button color="#" style={buttonStyle}>
+        Log In
+      </Button>
     );
   }
 }
+
+const buttonStyle = {
+  color: "#fff"
+};
 
 export default Login;

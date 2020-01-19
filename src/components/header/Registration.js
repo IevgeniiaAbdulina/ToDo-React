@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "reactstrap";
 
 import "./Registration.css";
 
@@ -11,11 +12,15 @@ class Registration extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>Registration</div>
-      </div>
+      <Button color="#" style={buttonStyle}>
+        Register
+      </Button>
     );
   }
 }
+
+const buttonStyle = {
+  color: "#fff"
+};
 
 export default Registration;

@@ -1,9 +1,14 @@
 import React from "react";
-import Navbar from "./components/navbar/Navbar";
+// import { Container, Row, Col } from "reactstrap";
+
+import Header from "./components/header/Header";
 import ListsTable from "./components/lists/ListsTable";
 
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "../node_modules/jquery/dist/jquery.min.js";b
+// import '../node_modules/bootstrap/dist/js/'
+
 // import axios from "axios";
 
 // const axiosInstance = axios.create({
@@ -25,9 +30,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="body-app">
         <header>
-          <Navbar />
+          <Header />
         </header>
         <div className="container-fluid">
           <div className="row flex-xl-nowrap">
