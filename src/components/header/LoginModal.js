@@ -19,6 +19,19 @@ const LoginModal = props => {
 
       <ModalBody>
         <Form>
+          <FormGroup id="userNameHidden" row style={nameHidden}>
+            <Label sm={2}>Name</Label>
+
+            <Col sm={10}>
+              <Input
+                id="loginUserLog"
+                type="text"
+                placeholder="Name"
+                autoComplete="username"
+              />
+            </Col>
+          </FormGroup>
+
           <FormGroup row>
             <Label sm={2}>Email</Label>
 
@@ -41,12 +54,18 @@ const LoginModal = props => {
         </Form>
       </ModalBody>
       <ModalFooter>
-        <Button color="success" type="submit" onClick={props.onClose}>
+        <Button onClick={props.onClose}>Close</Button>
+
+        <Button color="success" type="submit">
           Log In
         </Button>
       </ModalFooter>
     </Modal>
   );
+};
+
+const nameHidden = {
+  display: "none"
 };
 
 export default LoginModal;

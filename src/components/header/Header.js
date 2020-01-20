@@ -1,5 +1,3 @@
-// rcf + Tab - template of a function component
-// rce + Tab - to wright a template of a classNameName component
 import React from "react";
 import {
   Collapse,
@@ -8,10 +6,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  Button
+  NavLink
 } from "reactstrap";
-
 import "./Header.css";
 
 class Header extends React.Component {

@@ -7,12 +7,6 @@ import LoginModal from "./components/header/LoginModal";
 
 import "./App.css";
 
-// import axios from "axios";
-
-// const axiosInstance = axios.create({
-//   baseURL: "https://cc19todoapp.herokuapp.com"
-// });
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -23,20 +17,15 @@ class App extends React.Component {
     };
   }
 
-  handleClose() {
-    this.setState({ show: false });
-  }
-
   handleShow() {
     this.setState({ show: true });
   }
 
-  componentDidMount() {
-    // axiosInstance
-    //   .get("/api/users/me")
-    //   .then(res => console.log(res.data))
-    //   .then(res => this.setState({ userID: res.data }));
+  handleClose() {
+    this.setState({ show: false });
   }
+
+  componentDidMount() {}
 
   render() {
     return (
