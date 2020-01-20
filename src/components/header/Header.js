@@ -8,12 +8,9 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
+  NavLink,
   Button
 } from "reactstrap";
-
-import Login from "./Login";
-// import Logout from "./Logout";
-import Registration from "./Registration";
 
 import "./Header.css";
 
@@ -42,10 +39,15 @@ class Header extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Login />
+                <NavLink onClick={this.props.onClick} style={buttonStyle}>
+                  Log In
+                </NavLink>
               </NavItem>
+
               <NavItem>
-                <Registration />
+                <NavLink onClick={this.props.onClick} style={buttonStyle}>
+                  Register
+                </NavLink>
               </NavItem>
             </Nav>
           </Collapse>
@@ -54,5 +56,10 @@ class Header extends React.Component {
     );
   }
 }
+
+const buttonStyle = {
+  cursor: "pointer",
+  color: "#fff"
+};
 
 export default Header;

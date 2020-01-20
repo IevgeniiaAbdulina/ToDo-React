@@ -1,13 +1,11 @@
 import React from "react";
-// import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 
 import Header from "./components/header/Header";
-import ListsTable from "./components/lists/ListsTable";
+import RegisterModal from "./components/header/RegisterModal";
+import LoginModal from "./components/header/LoginModal";
 
 import "./App.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "../node_modules/jquery/dist/jquery.min.js";b
-// import '../node_modules/bootstrap/dist/js/'
 
 // import axios from "axios";
 
@@ -16,10 +14,22 @@ import "./App.css";
 // });
 
 class App extends React.Component {
-  state = {
-    _id: "",
-    lists: []
-  };
+  constructor(props) {
+    super(props);
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.state = {
+      show: false
+    };
+  }
+
+  handleClose() {
+    this.setState({ show: false });
+  }
+
+  handleShow() {
+    this.setState({ show: true });
+  }
 
   componentDidMount() {
     // axiosInstance
@@ -32,24 +42,27 @@ class App extends React.Component {
     return (
       <div className="body-app">
         <header>
-          <Header />
+          <Header onClick={this.handleShow} />
         </header>
-        <div className="container-fluid">
-          <div className="row flex-xl-nowrap">
-            <div className="col-12 col-md-3 col-xl-2">
-              Button
-              <button className="">Add List</button>
-            </div>
-            <main className="col-12 col-md-9 col-xl-8" role="main">
-              <ListsTable />
-            </main>
-          </div>
-        </div>
+        <Container>
+          <Row>
+            <Col>
+              <RegisterModal
+                show={this.state.show}
+                onClose={this.handleClose}
+              />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col>
+              <LoginModal show={this.state.show} onClose={this.handleClose} />
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }
 }
 
 export default App;
-
-// npm start
