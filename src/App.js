@@ -10,42 +10,56 @@ import "./App.css";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
+    this.handleLoginShow = this.handleLoginShow.bind(this);
+    this.handleLoginClose = this.handleLoginClose.bind(this);
+    this.handleRegisterShow = this.handleRegisterShow.bind(this);
+    this.handleRegisterClose = this.handleRegisterClose.bind(this);
     this.state = {
-      show: false
+      showLogin: false,
+      showRegister: false,
     };
   }
 
-  handleShow() {
-    this.setState({ show: true });
+  handleLoginShow() {
+    this.setState({ showLogin: true });
   }
 
-  handleClose() {
-    this.setState({ show: false });
+  handleLoginClose() {
+    this.setState({ showLogin: false });
   }
 
-  componentDidMount() {}
+  handleRegisterShow() {
+    this.setState({ showRegister: true });
+  }
+
+  handleRegisterClose() {
+    this.setState({ showRegister: false });
+  }
 
   render() {
     return (
       <div className="body-app">
         <header>
-          <Header onClick={this.handleShow} />
+          <Header 
+            onLoginClick={this.handleLoginShow}
+            onRegisterClick={this.handleRegisterShow} 
+          />
         </header>
         <Container>
           <Row>
             <Col>
               <RegisterModal
-                show={this.state.show}
-                onClose={this.handleClose}
+                show={this.state.showRegister}
+                onClose={this.handleRegisterClose}
               />
             </Col>
           </Row>
 
           <Row>
             <Col>
-              <LoginModal show={this.state.show} onClose={this.handleClose} />
+              <LoginModal 
+                show={this.state.showLogin} 
+                onClose={this.handleLoginClose} />
             </Col>
           </Row>
         </Container>
