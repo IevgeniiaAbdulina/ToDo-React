@@ -35,13 +35,21 @@ class Header extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink onClick={this.props.onLoginClick} className="btn">
+                <NavLink
+                  onClick={this.props.onLoginClick}
+                  className="btn"
+                  style={buttonStyle}
+                >
                   Log In
                 </NavLink>
               </NavItem>
 
               <NavItem>
-                <NavLink onClick={this.props.onRegisterClick} className="btn">
+                <NavLink
+                  onClick={this.props.onRegisterClick}
+                  className="btn"
+                  style={buttonStyle}
+                >
                   Register
                 </NavLink>
               </NavItem>
@@ -52,5 +60,9 @@ class Header extends React.Component {
     );
   }
 }
+
+const buttonStyle = {
+  color: "#fff"
+};
 
 export default Header;

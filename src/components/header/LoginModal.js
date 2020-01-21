@@ -109,8 +109,6 @@ class LoginModal extends React.Component {
           </Form>
         </ModalBody>
         <ModalFooter>
-          {/* <Button onClick={this.props.onClose}>Close</Button> */}
-
           <Button color="success" type="submit" onClick={this.postUserData}>
             Log In
           </Button>

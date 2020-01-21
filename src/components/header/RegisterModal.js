@@ -18,96 +18,118 @@ const axiosInstance = axios.create({
   baseURL: "https://cc19todoapp.herokuapp.com"
 });
 
-function getLoginValue() {
-  const login = document.getElementById("loginUser").value;
-  const email = document.getElementById("emailUser").value;
-  const password = document.getElementById("passwordUser").value;
-  console.log("this is input value" + login + " " + email + " " + password);
-}
+class RegisterModal extends React.Component {
+  constructor(props) {
+    super(props);
 
-const sendRegisterUser = () => {
-  const loginUser = document.getElementById("loginUser").value;
-  const emailUser = document.getElementById("emailUser").value;
-  const passwordUser = document.getElementById("passwordUser").value;
+    this.state = {
+      loginUser: "",
+      emailUser: "",
+      passwordUser: ""
+    };
+  }
 
-  axiosInstance
-    .post("/api/users/", {
-      login: loginUser,
-      email: emailUser,
-      password: passwordUser
-    })
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err, err.res);
+  handleInputLogin = e => {
+    this.setState({
+      loginUser: e.target.value
     });
-};
+  };
 
-const RegisterModal = props => {
-  console.log(props);
+  handleInputEmail = e => {
+    this.setState({
+      emailUser: e.target.value
+    });
+    console.log(e.target.value);
+  };
 
-  return (
-    <Modal isOpen={props.show} toggle={props.onClose}>
-      <ModalHeader toggle={props.onClose}>Register</ModalHeader>
+  handleInputPassword = e => {
+    this.setState({
+      passwordUser: e.target.value
+    });
+    console.log(e.target.value);
+  };
 
-      <ModalBody>
-        <Form>
-          <FormGroup row>
-            <Label sm={2}>Name</Label>
+  handlePostUserRegister = () => {
+    axiosInstance
+      .post("/api/users/", {
+        login: this.state.loginUser,
+        email: this.state.emailUser,
+        password: this.state.passwordUser
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err, err.res);
+      });
+  };
 
-            <Col sm={10}>
-              <Input
-                id="loginUser"
-                type="text"
-                placeholder="Name"
-                autoComplete="username"
-              />
-            </Col>
-          </FormGroup>
+  postUserRegister = () => {
+    this.props.onClose();
+    this.handlePostUserRegister();
+  };
 
-          <FormGroup row>
-            <Label sm={2}>Email</Label>
+  render() {
+    return (
+      <Modal isOpen={this.props.show} toggle={this.props.onClose}>
+        <ModalHeader toggle={this.props.onClose}>Register</ModalHeader>
 
-            <Col sm={10}>
-              <Input
-                id="emailUser"
-                type="emil"
-                placeholder="Email"
-                autoComplete="email"
-              />
-            </Col>
-          </FormGroup>
+        <ModalBody>
+          <Form>
+            <FormGroup row>
+              <Label sm={2}>Name</Label>
 
-          <FormGroup row>
-            <Label sm={2}>Password</Label>
+              <Col sm={10}>
+                <Input
+                  id="loginUser"
+                  type="text"
+                  placeholder="Name"
+                  autoComplete="username"
+                  value={this.state.loginUser}
+                  onChange={this.handleInputLogin}
+                />
+              </Col>
+            </FormGroup>
 
-            <Col sm={10}>
-              <Input
-                id="passwordUser"
-                type="password"
-                placeholder="Password"
-                autoComplete="new-password"
-              />
-            </Col>
-          </FormGroup>
-        </Form>
-      </ModalBody>
-      <ModalFooter>
-        <Button onClick={props.onClose}>Close</Button>
-        <Button
-          color="success"
-          type="submit"
-          onClick={() => {
-            getLoginValue();
-            sendRegisterUser();
-          }}
-        >
-          Register
-        </Button>
-      </ModalFooter>
-    </Modal>
-  );
-};
+            <FormGroup row>
+              <Label sm={2}>Email</Label>
+
+              <Col sm={10}>
+                <Input
+                  id="emailUser"
+                  type="emil"
+                  placeholder="Email"
+                  autoComplete="email"
+                  value={this.state.emailUser}
+                  onChange={this.handleInputEmail}
+                />
+              </Col>
+            </FormGroup>
+
+            <FormGroup row>
+              <Label sm={2}>Password</Label>
+
+              <Col sm={10}>
+                <Input
+                  id="passwordUser"
+                  type="password"
+                  placeholder="Password"
+                  autoComplete="new-password"
+                  value={this.state.passwordUser}
+                  onChange={this.handleInputPassword}
+                />
+              </Col>
+            </FormGroup>
+          </Form>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="success" type="submit" onClick={this.postUserRegister}>
+            Register
+          </Button>
+        </ModalFooter>
+      </Modal>
+    );
+  }
+}
 
 export default RegisterModal;
