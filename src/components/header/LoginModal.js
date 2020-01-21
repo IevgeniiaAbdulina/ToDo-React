@@ -11,58 +11,114 @@ import {
   Input,
   Button
 } from "reactstrap";
+import axios from "axios";
 
-const LoginModal = props => {
-  return (
-    <Modal isOpen={props.show} toggle={props.onClose}>
-      <ModalHeader toggle={props.onClose}>Log In</ModalHeader>
+const axiosInstance = axios.create({
+  baseURL: "https://cc19todoapp.herokuapp.com"
+});
 
-      <ModalBody>
-        <Form>
-          <FormGroup id="userNameHidden" row style={nameHidden}>
-            <Label sm={2}>Name</Label>
+class LoginModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      emailUser: "",
+      passwordUser: ""
+    };
+  }
 
-            <Col sm={10}>
-              <Input
-                id="loginUserLog"
-                type="text"
-                placeholder="Name"
-                autoComplete="username"
-              />
-            </Col>
-          </FormGroup>
+  handleInputEmail = e => {
+    this.setState({
+      emailUser: e.target.value
+    });
+    console.log(e.target.value);
+  };
 
-          <FormGroup row>
-            <Label sm={2}>Email</Label>
+  handleInputPassword = e => {
+    this.setState({
+      passwordUser: e.target.value
+    });
+    console.log(e.target.value);
+  };
 
-            <Col sm={10}>
-              <Input type="emil" placeholder="Email" autoComplete="email" />
-            </Col>
-          </FormGroup>
+  handlePostUserData = () => {
+    axiosInstance
+      .post("/api/auth/", {
+        email: this.state.emailUser,
+        password: this.state.passwordUser
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err, err.res);
+      });
+  };
 
-          <FormGroup row>
-            <Label sm={2}>Password</Label>
+  postUserData = () => {
+    this.props.onClose();
+    this.handlePostUserData();
+  };
 
-            <Col sm={10}>
-              <Input
-                type="password"
-                placeholder="Password"
-                autoComplete="current-password"
-              />
-            </Col>
-          </FormGroup>
-        </Form>
-      </ModalBody>
-      <ModalFooter>
-        <Button onClick={props.onClose}>Close</Button>
+  render() {
+    return (
+      <Modal isOpen={this.props.show} toggle={this.props.onClose}>
+        <ModalHeader toggle={this.props.onClose}>Log In</ModalHeader>
 
-        <Button color="success" type="submit">
-          Log In
-        </Button>
-      </ModalFooter>
-    </Modal>
-  );
-};
+        <ModalBody>
+          <Form>
+            <FormGroup id="userNameHidden" row style={nameHidden}>
+              <Label sm={2}>Name</Label>
+
+              <Col sm={10}>
+                <Input
+                  id="loginUserLog"
+                  type="text"
+                  placeholder="Name"
+                  autoComplete="username"
+                />
+              </Col>
+            </FormGroup>
+
+            <FormGroup row>
+              <Label sm={2}>Email</Label>
+
+              <Col sm={10}>
+                <Input
+                  type="emil"
+                  placeholder="Email"
+                  autoComplete="email"
+                  value={this.state.emailUser}
+                  onChange={this.handleInputEmail}
+                />
+              </Col>
+            </FormGroup>
+
+            <FormGroup row>
+              <Label sm={2}>Password</Label>
+
+              <Col sm={10}>
+                <Input
+                  type="password"
+                  placeholder="Password"
+                  autoComplete="current-password"
+                  value={this.state.passwordUser}
+                  onChange={this.handleInputPassword}
+                />
+              </Col>
+            </FormGroup>
+          </Form>
+        </ModalBody>
+        <ModalFooter>
+          {/* <Button onClick={this.props.onClose}>Close</Button> */}
+
+          <Button color="success" type="submit" onClick={this.postUserData}>
+            Log In
+          </Button>
+        </ModalFooter>
+      </Modal>
+    );
+  }
+}
 
 const nameHidden = {
   display: "none"
