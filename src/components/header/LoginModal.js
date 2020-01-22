@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+// import { BrowserRouter as Router } from "react-router-dom";
 
 import {
   Modal,
@@ -13,6 +13,7 @@ import {
   Input,
   Button
 } from "reactstrap";
+import { Redirect } from "react-router-dom";
 
 import axios from "axios";
 
@@ -33,15 +34,10 @@ class LoginModal extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  onChange = event => {
-    const inputName = event.target.name;
-    const value = event.target.value;
-
+  onChange = e => {
     this.setState({
-      [inputName]: value
+      [e.target.name]: e.target.value
     });
-
-    event.preventDefault();
   };
 
   handlePostUserData = () => {
@@ -50,9 +46,18 @@ class LoginModal extends React.Component {
         email: this.state.emailUser,
         password: this.state.passwordUser
       })
+      // .then((err, res) => {
+      //   if (err) {
+      //     this.setState({ errorMessage: "Invalid login or password." });
+      //     return;
+      //   }
+      //   localStorage.setItem("token", res.data);
+      //   this.setState();
+      // });
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         localStorage.setItem("token", res.data);
+        this.setState({});
       })
       .catch(err => {
         if (err) {
@@ -62,15 +67,12 @@ class LoginModal extends React.Component {
           return;
         }
       });
-
-    this.setState();
   };
 
-  isAuthenticated() {
+  isAuthenticated = () => {
     const token = localStorage.getItem("token");
-    console.log(token);
     return token && token.length > 10;
-  }
+  };
 
   postUserData = () => {
     this.props.onClose();
@@ -78,65 +80,74 @@ class LoginModal extends React.Component {
   };
 
   render() {
+    const isAlreadyAuthenticated = this.isAuthenticated();
     return (
-      <Router>
-        <Modal isOpen={this.props.show} toggle={this.props.onClose}>
-          <ModalHeader toggle={this.props.onClose}>Log In</ModalHeader>
+      <div>
+        {isAlreadyAuthenticated ? (
+          <Redirect to="/user" />
+        ) : (
+          <Modal
+            isOpen={this.props.show}
+            toggle={this.props.onClose}
+            onSubmit={this.isAuthenticated}
+          >
+            <ModalHeader toggle={this.props.onClose}>Log In</ModalHeader>
 
-          <ModalBody>
-            <Form>
-              <FormGroup id="userNameHidden" row style={nameHidden}>
-                <Label sm={2}>Name</Label>
+            <ModalBody>
+              <Form>
+                <FormGroup id="userNameHidden" row style={nameHidden}>
+                  <Label sm={2}>Name</Label>
 
-                <Col sm={10}>
-                  <Input
-                    name="loginUser"
-                    id="loginUserLog"
-                    type="text"
-                    placeholder="Name"
-                    autoComplete="username"
-                  />
-                </Col>
-              </FormGroup>
+                  <Col sm={10}>
+                    <Input
+                      name="loginUser"
+                      id="loginUserLog"
+                      type="text"
+                      placeholder="Name"
+                      autoComplete="username"
+                    />
+                  </Col>
+                </FormGroup>
 
-              <FormGroup row>
-                <Label sm={2}>Email</Label>
+                <FormGroup row>
+                  <Label sm={2}>Email</Label>
 
-                <Col sm={10}>
-                  <Input
-                    name="emailUser"
-                    type="emil"
-                    placeholder="Email"
-                    autoComplete="email"
-                    value={this.state.emailUser}
-                    onChange={this.onChange}
-                  />
-                </Col>
-              </FormGroup>
+                  <Col sm={10}>
+                    <Input
+                      name="emailUser"
+                      type="emil"
+                      placeholder="Email"
+                      autoComplete="email"
+                      value={this.state.emailUser}
+                      onChange={this.onChange}
+                    />
+                  </Col>
+                </FormGroup>
 
-              <FormGroup row>
-                <Label sm={2}>Password</Label>
+                <FormGroup row>
+                  <Label sm={2}>Password</Label>
 
-                <Col sm={10}>
-                  <Input
-                    name="passwordUser"
-                    type="password"
-                    placeholder="Password"
-                    autoComplete="current-password"
-                    value={this.state.passwordUser}
-                    onChange={this.onChange}
-                  />
-                </Col>
-              </FormGroup>
-            </Form>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="success" type="submit" onClick={this.postUserData}>
-              Log In
-            </Button>
-          </ModalFooter>
-        </Modal>
-      </Router>
+                  <Col sm={10}>
+                    <Input
+                      name="passwordUser"
+                      type="password"
+                      placeholder="Password"
+                      autoComplete="current-password"
+                      value={this.state.passwordUser}
+                      onChange={this.onChange}
+                    />
+                  </Col>
+                </FormGroup>
+              </Form>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="success" type="submit" onClick={this.postUserData}>
+                Log In
+              </Button>
+            </ModalFooter>
+          </Modal>
+        )}
+      </div>
     );
   }
 }

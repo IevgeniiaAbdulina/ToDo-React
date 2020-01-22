@@ -1,6 +1,5 @@
 import React from "react";
-
-import "./Logout.css";
+import { Link } from "react-router-dom";
 
 class Logout extends React.Component {
   state = {
@@ -10,7 +9,8 @@ class Logout extends React.Component {
   render() {
     return (
       <div>
-        <div>Log Out</div>
+        <div>You have been logged out!</div>
+        <Link to="/">Login Again</Link>
       </div>
     );
   }
