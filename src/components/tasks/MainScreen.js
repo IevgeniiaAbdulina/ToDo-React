@@ -19,8 +19,7 @@ class MainScreen extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false,
-      token: localStorage.getItem("token")
+      isOpen: false
     };
   }
 
@@ -30,24 +29,32 @@ class MainScreen extends React.Component {
     });
   }
 
+  isAuthenticated = () => {
+    const token = localStorage.getItem("token");
+    return token && token.length > 10;
+  };
+
   render() {
-    if (this.state.token === null) {
-      return <Redirect to="/" />;
-    }
+    const isAlreadyAuthenticated = this.isAuthenticated();
+
     return (
       <div>
-        <Navbar dark expand="md" style={navbarStyle}>
-          <NavbarBrand>ToDo List</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav>
-              <NavItem>Welcome, user!</NavItem>
-              <NavItem>
-                <Button to="/logout">Log out</Button>
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Navbar>
+        {!isAlreadyAuthenticated ? (
+          <Redirect to="/" />
+        ) : (
+          <Navbar dark expand="md" style={navbarStyle}>
+            <NavbarBrand>ToDo List</NavbarBrand>
+            <NavbarToggler onClick={this.toggle} />
+            <Collapse isOpen={this.state.isOpen} navbar>
+              <Nav>
+                <NavItem>Welcome, user!</NavItem>
+                <NavItem>
+                  <Button to="/logout">Log out</Button>
+                </NavItem>
+              </Nav>
+            </Collapse>
+          </Navbar>
+        )}
 
         <h1>Welcome! You are Sign In! User Page</h1>
       </div>

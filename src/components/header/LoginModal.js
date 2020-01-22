@@ -1,5 +1,4 @@
 import React from "react";
-// import { BrowserRouter as Router } from "react-router-dom";
 
 import {
   Modal,
@@ -46,16 +45,7 @@ class LoginModal extends React.Component {
         email: this.state.emailUser,
         password: this.state.passwordUser
       })
-      // .then((err, res) => {
-      //   if (err) {
-      //     this.setState({ errorMessage: "Invalid login or password." });
-      //     return;
-      //   }
-      //   localStorage.setItem("token", res.data);
-      //   this.setState();
-      // });
       .then(res => {
-        // console.log(res.data);
         localStorage.setItem("token", res.data);
         this.setState({});
       })
