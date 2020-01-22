@@ -6,6 +6,9 @@ import RegisterModal from "./components/header/RegisterModal";
 import LoginModal from "./components/header/LoginModal";
 
 import "./App.css";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import MainScreen from "./components/tasks/MainScreen";
+import Home from "./components/header/Home";
 
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +19,7 @@ class App extends React.Component {
     this.handleRegisterClose = this.handleRegisterClose.bind(this);
     this.state = {
       showLogin: false,
-      showRegister: false,
+      showRegister: false
     };
   }
 
@@ -38,31 +41,39 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="body-app">
-        <header>
-          <Header 
-            onLoginClick={this.handleLoginShow}
-            onRegisterClick={this.handleRegisterShow} 
-          />
-        </header>
-        <Container>
-          <Row>
-            <Col>
-              <RegisterModal
-                show={this.state.showRegister}
-                onClose={this.handleRegisterClose}
-              />
-            </Col>
-          </Row>
+      <div className="app">
+        <BrowserRouter>
+          <Switch>
+            <Route exact path={"/"} component={Home} />
+            <Route exact path={"/user"} component={MainScreen} />
+          </Switch>
 
-          <Row>
-            <Col>
-              <LoginModal 
-                show={this.state.showLogin} 
-                onClose={this.handleLoginClose} />
-            </Col>
-          </Row>
-        </Container>
+          <header>
+            <Header
+              onLoginClick={this.handleLoginShow}
+              onRegisterClick={this.handleRegisterShow}
+            />
+          </header>
+          <Container>
+            <Row>
+              <Col>
+                <RegisterModal
+                  show={this.state.showRegister}
+                  onClose={this.handleRegisterClose}
+                />
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <LoginModal
+                  show={this.state.showLogin}
+                  onClose={this.handleLoginClose}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </BrowserRouter>
       </div>
     );
   }

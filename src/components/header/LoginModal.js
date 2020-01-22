@@ -1,4 +1,6 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+
 import {
   Modal,
   ModalHeader,
@@ -11,6 +13,7 @@ import {
   Input,
   Button
 } from "reactstrap";
+
 import axios from "axios";
 
 const axiosInstance = axios.create({
@@ -20,24 +23,25 @@ const axiosInstance = axios.create({
 class LoginModal extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       emailUser: "",
-      passwordUser: ""
+      passwordUser: "",
+      errorMessage: ""
     };
+
+    this.onChange = this.onChange.bind(this);
   }
 
-  handleInputEmail = e => {
-    this.setState({
-      emailUser: e.target.value
-    });
-    console.log(e.target.value);
-  };
+  onChange = event => {
+    const inputName = event.target.name;
+    const value = event.target.value;
 
-  handleInputPassword = e => {
     this.setState({
-      passwordUser: e.target.value
+      [inputName]: value
     });
-    console.log(e.target.value);
+
+    event.preventDefault();
   };
 
   handlePostUserData = () => {
@@ -47,12 +51,26 @@ class LoginModal extends React.Component {
         password: this.state.passwordUser
       })
       .then(res => {
-        console.log(res);
+        console.log(res.data);
+        localStorage.setItem("token", res.data);
       })
       .catch(err => {
-        console.log(err, err.res);
+        if (err) {
+          this.setState({
+            errorMessage: "Invalid login or password."
+          });
+          return;
+        }
       });
+
+    this.setState();
   };
+
+  isAuthenticated() {
+    const token = localStorage.getItem("token");
+    console.log(token);
+    return token && token.length > 10;
+  }
 
   postUserData = () => {
     this.props.onClose();
@@ -61,59 +79,64 @@ class LoginModal extends React.Component {
 
   render() {
     return (
-      <Modal isOpen={this.props.show} toggle={this.props.onClose}>
-        <ModalHeader toggle={this.props.onClose}>Log In</ModalHeader>
+      <Router>
+        <Modal isOpen={this.props.show} toggle={this.props.onClose}>
+          <ModalHeader toggle={this.props.onClose}>Log In</ModalHeader>
 
-        <ModalBody>
-          <Form>
-            <FormGroup id="userNameHidden" row style={nameHidden}>
-              <Label sm={2}>Name</Label>
+          <ModalBody>
+            <Form>
+              <FormGroup id="userNameHidden" row style={nameHidden}>
+                <Label sm={2}>Name</Label>
 
-              <Col sm={10}>
-                <Input
-                  id="loginUserLog"
-                  type="text"
-                  placeholder="Name"
-                  autoComplete="username"
-                />
-              </Col>
-            </FormGroup>
+                <Col sm={10}>
+                  <Input
+                    name="loginUser"
+                    id="loginUserLog"
+                    type="text"
+                    placeholder="Name"
+                    autoComplete="username"
+                  />
+                </Col>
+              </FormGroup>
 
-            <FormGroup row>
-              <Label sm={2}>Email</Label>
+              <FormGroup row>
+                <Label sm={2}>Email</Label>
 
-              <Col sm={10}>
-                <Input
-                  type="emil"
-                  placeholder="Email"
-                  autoComplete="email"
-                  value={this.state.emailUser}
-                  onChange={this.handleInputEmail}
-                />
-              </Col>
-            </FormGroup>
+                <Col sm={10}>
+                  <Input
+                    name="emailUser"
+                    type="emil"
+                    placeholder="Email"
+                    autoComplete="email"
+                    value={this.state.emailUser}
+                    onChange={this.onChange}
+                  />
+                </Col>
+              </FormGroup>
 
-            <FormGroup row>
-              <Label sm={2}>Password</Label>
+              <FormGroup row>
+                <Label sm={2}>Password</Label>
 
-              <Col sm={10}>
-                <Input
-                  type="password"
-                  placeholder="Password"
-                  autoComplete="current-password"
-                  value={this.state.passwordUser}
-                  onChange={this.handleInputPassword}
-                />
-              </Col>
-            </FormGroup>
-          </Form>
-        </ModalBody>
-        <ModalFooter>
-          <Button color="success" type="submit" onClick={this.postUserData}>
-            Log In
-          </Button>
-        </ModalFooter>
-      </Modal>
+                <Col sm={10}>
+                  <Input
+                    name="passwordUser"
+                    type="password"
+                    placeholder="Password"
+                    autoComplete="current-password"
+                    value={this.state.passwordUser}
+                    onChange={this.onChange}
+                  />
+                </Col>
+              </FormGroup>
+            </Form>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="success" type="submit" onClick={this.postUserData}>
+              Log In
+            </Button>
+          </ModalFooter>
+        </Modal>
+      </Router>
     );
   }
 }

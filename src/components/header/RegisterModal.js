@@ -27,26 +27,19 @@ class RegisterModal extends React.Component {
       emailUser: "",
       passwordUser: ""
     };
+
+    this.onChange = this.onChange.bind(this);
   }
 
-  handleInputLogin = e => {
-    this.setState({
-      loginUser: e.target.value
-    });
-  };
+  onChange = event => {
+    const inputName = event.target.name;
+    const value = event.target.value;
 
-  handleInputEmail = e => {
     this.setState({
-      emailUser: e.target.value
+      [inputName]: value
     });
-    console.log(e.target.value);
-  };
 
-  handleInputPassword = e => {
-    this.setState({
-      passwordUser: e.target.value
-    });
-    console.log(e.target.value);
+    event.preventDefault();
   };
 
   handlePostUserRegister = () => {
@@ -81,12 +74,13 @@ class RegisterModal extends React.Component {
 
               <Col sm={10}>
                 <Input
+                  name="loginUser"
                   id="loginUser"
                   type="text"
                   placeholder="Name"
                   autoComplete="username"
                   value={this.state.loginUser}
-                  onChange={this.handleInputLogin}
+                  onChange={this.onChange}
                 />
               </Col>
             </FormGroup>
@@ -96,12 +90,13 @@ class RegisterModal extends React.Component {
 
               <Col sm={10}>
                 <Input
+                  name="emailUser"
                   id="emailUser"
                   type="emil"
                   placeholder="Email"
                   autoComplete="email"
                   value={this.state.emailUser}
-                  onChange={this.handleInputEmail}
+                  onChange={this.onChange}
                 />
               </Col>
             </FormGroup>
@@ -111,12 +106,13 @@ class RegisterModal extends React.Component {
 
               <Col sm={10}>
                 <Input
+                  name="passwordUser"
                   id="passwordUser"
                   type="password"
                   placeholder="Password"
                   autoComplete="new-password"
                   value={this.state.passwordUser}
-                  onChange={this.handleInputPassword}
+                  onChange={this.onChange}
                 />
               </Col>
             </FormGroup>
