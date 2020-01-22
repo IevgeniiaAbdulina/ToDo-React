@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Collapse,
   Navbar,
@@ -8,8 +9,6 @@ import {
   NavItem,
   NavLink
 } from "reactstrap";
-import "./Header.css";
-// import { Redirect } from "react-router-dom";
 
 class Header extends React.Component {
   constructor(props) {
@@ -27,23 +26,9 @@ class Header extends React.Component {
     });
   }
 
-  // isAuthenticated = () => {
-  //   const token = localStorage.getItem("token");
-  //   return token && token.length > 10;
-  // };
-
-  // handleSuccessfulLogin() {
-  //   this.setState({});
-  // }
-
   render() {
-    // const isAlreadyAuthenticated = this.isAuthenticated();
-
     return (
       <div>
-        {/* {isAlreadyAuthenticated ? (
-          <Redirect to="/user" />
-        ) : ( */}
         <Navbar dark expand="md">
           <NavbarBrand>ToDo List</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
@@ -54,7 +39,6 @@ class Header extends React.Component {
                   onClick={this.props.onLoginClick}
                   className="btn"
                   style={buttonStyle}
-                  // onSuccessfulLogin={this.handleSuccessfulLogin.bind(this)}
                 >
                   Log In
                 </NavLink>
@@ -72,7 +56,6 @@ class Header extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
-        {/* )} */}
       </div>
     );
   }

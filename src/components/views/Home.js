@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Container, Row, Col } from "reactstrap";
-// import { Redirect } from "react-router-dom";
 
 import Header from "./Header";
 import RegisterModal from "./RegisterModal";
@@ -36,33 +35,15 @@ class Home extends React.Component {
     this.setState({ showRegister: false });
   }
 
-  // isAuthenticated = () => {
-  //   const token = localStorage.getItem("token");
-  //   return token && token.length > 10;
-  // };
-
-  // handleSuccessfulLogin() {
-  //   // this.setState({});
-  //   window.location.reload();
-  // }
-
   render() {
-    // const isAlreadyAuthenticated = this.isAuthenticated();
-
     return (
       <div>
-        {/* {isAlreadyAuthenticated ? (
-          <Redirect to="/user" />
-        ) : ( */}
         <header>
           <Header
             onLoginClick={this.handleLoginShow}
             onRegisterClick={this.handleRegisterShow}
-            handleSuccessfulLogin
-            // onSuccessfulLogin={this.handleSuccessfulLogin.bind(this)}
           />
         </header>
-        {/* )} */}
         <h4>
           You are not logged in. You must log in to view the page at /user
         </h4>

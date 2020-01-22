@@ -10,10 +10,9 @@ import {
   Button
 } from "reactstrap";
 
-import "../header/Header.css";
 import { Redirect } from "react-router-dom";
 
-class MainScreen extends React.Component {
+class UserPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -49,7 +48,7 @@ class MainScreen extends React.Component {
               <Nav>
                 <NavItem>Welcome, user!</NavItem>
                 <NavItem>
-                  <Button to="/logout">Log out</Button>
+                  <Button to="/">Log out</Button>
                 </NavItem>
               </Nav>
             </Collapse>
@@ -67,4 +66,4 @@ const navbarStyle = {
   background: "#11064d"
 };
 
-export default MainScreen;
+export default UserPage;
