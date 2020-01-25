@@ -1,19 +1,23 @@
 import React from "react";
 
-import "./App.css";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Home from "./components/views/Home";
-import UserPage from "./components/views/UserPage";
+import { BrowserRouter, Route } from "react-router-dom";
+
+import Header from './components/Header';
+import Home from './components/Home';
+import ListsShow from './components/ListsShow';
+
 
 class App extends React.Component {
+   
   render() {
     return (
-      <div className="app">
+      <div>
         <BrowserRouter>
-          <Switch>
+          <div>
+            <Header />
             <Route exact path={"/"} component={Home} />
-            <Route path={"/user"} component={UserPage} />
-          </Switch>
+            <Route path={"/user"} component={ListsShow} />
+          </div>
         </BrowserRouter>
       </div>
     );
