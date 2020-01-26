@@ -11,7 +11,8 @@ import {
   Col,
   Label,
   Input,
-  Button
+  Button,
+  FormFeedback
 } from "reactstrap";
 
 import axios from "axios";
@@ -31,7 +32,11 @@ class Register extends React.Component {
       loginUser: "",
       emailUser: "",
       passwordUser: "",
-      showRegister: false
+      showRegister: false,
+      response: "",
+      isRegisterOk: null,
+      validInput: null,
+      invalidInput: null
     };
   }
 
@@ -48,8 +53,6 @@ class Register extends React.Component {
     this.setState({
       [name]: value
     });
-
-    e.preventDefault();
   };
 
   handlePostUserRegister = () => {
@@ -61,16 +64,35 @@ class Register extends React.Component {
       })
       .then(res => {
         console.log(res);
+        this.setState({
+          response: "You are successful register!",
+          isRegisterOk: true,
+          validInput: true
+        });
       })
       .catch(err => {
         console.log(err, err.res);
+        this.setState({
+          response: "Sorry your email or password not correct!",
+          isRegisterOk: false,
+          invalidInput: true
+        });
       });
   };
 
-  //   modalButtonRegister = () => {
-  //     this.toggleModalRegister();
-  //     this.handlePostUserRegister();
-  //   };
+  submitRegister = e => {
+    this.toggleModalRegister();
+    e.preventDefault();
+    this.setState({
+      loginUser: "",
+      emailUser: "",
+      passwordUser: "",
+      response: "",
+      isRegisterOk: null,
+      validInput: null,
+      invalidInput: null
+    });
+  };
 
   render() {
     return (
@@ -87,10 +109,10 @@ class Register extends React.Component {
           isOpen={this.state.showRegister}
           toggle={this.toggleModalRegister}
         >
-          <ModalHeader toggle={this.toggleModalRegister}>Register</ModalHeader>
+          <ModalHeader toggle={this.submitRegister}>Register</ModalHeader>
 
           <ModalBody>
-            <Form>
+            <Form className="form">
               <FormGroup row>
                 <Label sm={2}>Name</Label>
 
@@ -104,7 +126,6 @@ class Register extends React.Component {
                     autoComplete="username"
                     value={this.state.loginUser}
                     onChange={this.onChange}
-                    valid={this.state.setValidated}
                   />
                 </Col>
               </FormGroup>
@@ -139,7 +160,16 @@ class Register extends React.Component {
                     autoComplete="new-password"
                     value={this.state.passwordUser}
                     onChange={this.onChange}
+                    valid={this.state.validInput}
+                    invalid={this.state.invalidInput}
                   />
+                  <FormFeedback
+                    value={this.state.response}
+                    valid={this.state.isRegisterOk}
+                    invalid={this.state.response}
+                  >
+                    {this.state.response}
+                  </FormFeedback>
                 </Col>
               </FormGroup>
             </Form>
@@ -153,7 +183,7 @@ class Register extends React.Component {
             >
               Register
             </Button>
-            <Button onClick={this.toggleModalRegister}>Close</Button>
+            <Button onClick={this.submitRegister}>Close</Button>
           </ModalFooter>
         </Modal>
       </div>
