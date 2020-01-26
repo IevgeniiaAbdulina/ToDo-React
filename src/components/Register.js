@@ -14,6 +14,12 @@ import {
   Button
 } from "reactstrap";
 
+import axios from "axios";
+
+const axiosInstance = axios.create({
+  baseURL: "https://cc19todoapp.herokuapp.com"
+});
+
 class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -35,10 +41,6 @@ class Register extends React.Component {
     });
   }
 
-  modalButtonRegister = () => {
-    this.toggleModalRegister();
-  };
-
   onChange = e => {
     const name = e.target.name;
     const value = e.target.value;
@@ -49,6 +51,26 @@ class Register extends React.Component {
 
     e.preventDefault();
   };
+
+  handlePostUserRegister = () => {
+    axiosInstance
+      .post("/api/users", {
+        login: this.state.loginUser,
+        email: this.state.emailUser,
+        password: this.state.passwordUser
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err, err.res);
+      });
+  };
+
+  //   modalButtonRegister = () => {
+  //     this.toggleModalRegister();
+  //     this.handlePostUserRegister();
+  //   };
 
   render() {
     return (
@@ -74,6 +96,7 @@ class Register extends React.Component {
 
                 <Col sm={10}>
                   <Input
+                    required
                     name="loginUser"
                     id="loginUser"
                     type="text"
@@ -81,6 +104,7 @@ class Register extends React.Component {
                     autoComplete="username"
                     value={this.state.loginUser}
                     onChange={this.onChange}
+                    valid={this.state.setValidated}
                   />
                 </Col>
               </FormGroup>
@@ -90,6 +114,7 @@ class Register extends React.Component {
 
                 <Col sm={10}>
                   <Input
+                    required
                     name="emailUser"
                     id="emailUser"
                     type="emil"
@@ -106,6 +131,7 @@ class Register extends React.Component {
 
                 <Col sm={10}>
                   <Input
+                    required
                     name="passwordUser"
                     id="passwordUser"
                     type="password"
@@ -123,10 +149,11 @@ class Register extends React.Component {
             <Button
               color="success"
               type="submit"
-              onClick={this.modalButtonRegister}
+              onClick={this.handlePostUserRegister}
             >
               Register
             </Button>
+            <Button onClick={this.toggleModalRegister}>Close</Button>
           </ModalFooter>
         </Modal>
       </div>

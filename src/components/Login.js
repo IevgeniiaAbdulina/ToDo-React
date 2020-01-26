@@ -24,7 +24,10 @@ class Login extends React.Component {
     this.state = {
       emailUser: "",
       passwordUser: "",
-      showLogin: false
+      showLogin: false,
+      validate: {
+        emailState: ""
+      }
     };
   }
 
@@ -34,20 +37,24 @@ class Login extends React.Component {
     });
   }
 
-  modalButtonSubmit = () => {
-    this.toggleModal();
-  };
+  // validateEmail(e) {
+  //     const { validate } = this.state
+  //     if(email)
+  // }
 
-  onChange = e => {
+  onChange = async e => {
     const name = e.target.name;
     const value = e.target.value;
 
-    this.setState({
+    await this.setState({
       [name]: value
     });
-    console.log(value);
-    e.preventDefault();
+    // e.preventDefault();
   };
+
+  submitForm(e) {
+    e.preventDefault();
+  }
 
   render() {
     return (
@@ -64,7 +71,7 @@ class Login extends React.Component {
           <ModalHeader toggle={this.toggleModal}>Log In</ModalHeader>
 
           <ModalBody>
-            <Form>
+            <Form className="form" onSubmit={e => this.submitForm(e)}>
               <FormGroup id="userNameHidden" row style={nameHidden}>
                 <Label sm={2}>Name</Label>
 
@@ -84,6 +91,7 @@ class Login extends React.Component {
 
                 <Col sm={10}>
                   <Input
+                    required
                     name="emailUser"
                     type="emil"
                     placeholder="Email"
@@ -99,6 +107,7 @@ class Login extends React.Component {
 
                 <Col sm={10}>
                   <Input
+                    required
                     name="passwordUser"
                     type="password"
                     placeholder="Password"
@@ -114,10 +123,11 @@ class Login extends React.Component {
             <Button
               color="success"
               type="submit"
-              onClick={this.modalButtonSubmit}
+              // onClick={}
             >
               Log In
             </Button>
+            <Button onClick={this.toggleModalRegister}>Close</Button>
           </ModalFooter>
         </Modal>
       </div>
