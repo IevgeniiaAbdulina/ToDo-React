@@ -12,7 +12,8 @@ import {
   Label,
   Input,
   Button,
-  FormFeedback
+  FormFeedback,
+  Spinner
 } from "reactstrap";
 
 import axios from "axios";
@@ -33,10 +34,10 @@ class Register extends React.Component {
       emailUser: "",
       passwordUser: "",
       showRegister: false,
-      response: "",
-      isRegisterOk: null,
+      responseDataUser: "",
       validInput: null,
-      invalidInput: null
+      invalidInput: null,
+      loadingSpinner: false
     };
   }
 
@@ -56,6 +57,10 @@ class Register extends React.Component {
   };
 
   handlePostUserRegister = () => {
+    this.setState({
+      loadingSpinner: true
+    });
+
     axiosInstance
       .post("/api/users", {
         login: this.state.loginUser,
@@ -65,17 +70,22 @@ class Register extends React.Component {
       .then(res => {
         console.log(res);
         this.setState({
-          response: "You are successful register!",
-          isRegisterOk: true,
+          responseDataUser:
+            "Congratulation! You have been successfully registered. Please log in to start.",
           validInput: true
         });
       })
       .catch(err => {
         console.log(err, err.res);
         this.setState({
-          response: "Sorry your email or password not correct!",
-          isRegisterOk: false,
+          responseDataUser:
+            "Sorry your email or password was incorrect! Please try again.",
           invalidInput: true
+        });
+      })
+      .then(() => {
+        this.setState({
+          loadingSpinner: false
         });
       });
   };
@@ -87,8 +97,7 @@ class Register extends React.Component {
       loginUser: "",
       emailUser: "",
       passwordUser: "",
-      response: "",
-      isRegisterOk: null,
+      responseDataUser: "",
       validInput: null,
       invalidInput: null
     });
@@ -126,6 +135,8 @@ class Register extends React.Component {
                     autoComplete="username"
                     value={this.state.loginUser}
                     onChange={this.onChange}
+                    valid={this.state.validInput}
+                    invalid={this.state.invalidInput}
                   />
                 </Col>
               </FormGroup>
@@ -143,6 +154,8 @@ class Register extends React.Component {
                     autoComplete="email"
                     value={this.state.emailUser}
                     onChange={this.onChange}
+                    valid={this.state.validInput}
+                    invalid={this.state.invalidInput}
                   />
                 </Col>
               </FormGroup>
@@ -163,12 +176,8 @@ class Register extends React.Component {
                     valid={this.state.validInput}
                     invalid={this.state.invalidInput}
                   />
-                  <FormFeedback
-                    value={this.state.response}
-                    valid={this.state.isRegisterOk}
-                    invalid={this.state.response}
-                  >
-                    {this.state.response}
+                  <FormFeedback valid={this.state.validInput}>
+                    {this.state.responseDataUser}
                   </FormFeedback>
                 </Col>
               </FormGroup>
@@ -176,14 +185,16 @@ class Register extends React.Component {
           </ModalBody>
 
           <ModalFooter>
+            <Button onClick={this.submitRegister}>Close</Button>
+
             <Button
               color="success"
               type="submit"
               onClick={this.handlePostUserRegister}
             >
-              Register
+              Register{" "}
+              {this.state.loadingSpinner && <Spinner size="sm" color="light" />}
             </Button>
-            <Button onClick={this.submitRegister}>Close</Button>
           </ModalFooter>
         </Modal>
       </div>
