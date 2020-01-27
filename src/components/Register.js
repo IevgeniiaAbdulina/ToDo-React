@@ -28,6 +28,8 @@ class Register extends React.Component {
 
     this.toggleModalRegister = this.toggleModalRegister.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.handlePostUserRegister = this.handlePostUserRegister.bind(this);
+    this.submitRegister = this.submitRegister.bind(this);
 
     this.state = {
       loginUser: "",
@@ -68,7 +70,7 @@ class Register extends React.Component {
         password: this.state.passwordUser
       })
       .then(res => {
-        console.log(res);
+        localStorage.setItem("login", res.data.login);
         this.setState({
           responseDataUser:
             "Congratulation! You have been successfully registered. Please log in to start.",

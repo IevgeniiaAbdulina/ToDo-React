@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   Collapse,
@@ -6,19 +6,22 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem
+  NavItem,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
 } from "reactstrap";
 
-import Register from './Register';
-import Login from './Login';
-
+import Register from "./Register";
+import Login from "./Login";
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
 
     this.toggle = this.toggle.bind(this);
-    
+
     this.state = {
       isOpen: false
     };
@@ -29,38 +32,76 @@ class Header extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
-    
-    render() { 
-        return ( 
-            <div>
-                <p>Header</p>
-                <div>
-                  <Navbar dark expand="md" style={navbarStyle}>
-                    <NavbarBrand>ToDo List</NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse navbar isOpen={this.state.isOpen}>
-                      <Nav className="ml-auto" navbar>
 
-                        <NavItem>
-                          <Login />
-                        </NavItem>
+  isLogged() {
+    const token = localStorage.getItem("token");
+    const login = localStorage.getItem("login");
 
-                        <NavItem>
-                          <Register />
-                        </NavItem>
+    if (!token) {
+      return (
+        <Collapse navbar isOpen={this.state.isOpen}>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <Login />
+            </NavItem>
 
-                      </Nav>
-                    </Collapse>
-                  </Navbar>
-                </div>
-            </div>
-         );
+            <NavItem>
+              <Register />
+            </NavItem>
+          </Nav>
+        </Collapse>
+      );
+    } else if (token) {
+      return (
+        <Collapse navbar isOpen={this.state.isOpen}>
+          <Nav className="ml-auto" navbar>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret style={buttonStyle}>
+                Welcome! {login}
+              </DropdownToggle>
+
+              <DropdownMenu right>
+                <DropdownItem>Logged in as {login}</DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem onClick={() => this.onLogoutClick()}>
+                  Log Out
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </Nav>
+        </Collapse>
+      );
     }
+  }
+
+  onLogoutClick = () => {
+    localStorage.removeItem("login");
+    localStorage.removeItem("token");
+    this.setState({});
+  };
+
+  render() {
+    return (
+      <div>
+        <div>
+          <Navbar dark expand="md" style={navbarStyle}>
+            <NavbarBrand>ToDo List</NavbarBrand>
+            <NavbarToggler onClick={this.toggle} />
+            {this.isLogged()}
+          </Navbar>
+        </div>
+      </div>
+    );
+  }
 }
 
 const navbarStyle = {
   color: "#fff",
   background: "#11064d"
 };
- 
+
+const buttonStyle = {
+  color: "#fff"
+};
+
 export default Header;

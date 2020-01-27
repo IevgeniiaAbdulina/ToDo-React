@@ -28,6 +28,8 @@ class Login extends React.Component {
 
     this.toggleModal = this.toggleModal.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.handlePostUserLogin = this.handlePostUserLogin.bind(this);
+    this.submitLogin = this.submitLogin.bind(this);
 
     this.state = {
       emailUser: "",
@@ -66,7 +68,7 @@ class Login extends React.Component {
         password: this.state.passwordUser
       })
       .then(res => {
-        console.log(res);
+        localStorage.setItem("token", res.data);
         this.setState({
           responseDataUser:
             "You have successfully logged in to your ToDo List.",
@@ -86,6 +88,7 @@ class Login extends React.Component {
           loadingSpinner: false
         });
       });
+    this.setState({});
   };
 
   submitLogin = e => {
