@@ -13,7 +13,8 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route exact path={"/"} component={Home} />
-          <Route path={"/user"} component={ListsShow} />
+          <Route exact path={"/user"} component={ListsShow} />
+          <Route exact path="*" component={() => "404 PAGE NOT FOUND"} />
         </Switch>
       </BrowserRouter>
     );

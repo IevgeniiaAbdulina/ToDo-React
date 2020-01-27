@@ -77,19 +77,18 @@ class Header extends React.Component {
   onLogoutClick = () => {
     localStorage.removeItem("login");
     localStorage.removeItem("token");
+    // this.props.history.push("/");
     this.setState({});
   };
 
   render() {
     return (
       <div>
-        <div>
-          <Navbar dark expand="md" style={navbarStyle}>
-            <NavbarBrand>ToDo List</NavbarBrand>
-            <NavbarToggler onClick={this.toggle} />
-            {this.isLogged()}
-          </Navbar>
-        </div>
+        <Navbar dark expand="md" style={navbarStyle}>
+          <NavbarBrand>ToDo List</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          {this.isLogged()}
+        </Navbar>
       </div>
     );
   }
