@@ -6,15 +6,13 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
+  NavItem
 } from "reactstrap";
 
 import Register from "./Register";
 import Login from "./Login";
+import Logout from "./Logout";
+// import { Redirect } from "react-router-dom";
 
 class Header extends React.Component {
   constructor(props) {
@@ -35,7 +33,6 @@ class Header extends React.Component {
 
   isLogged() {
     const token = localStorage.getItem("token");
-    const login = localStorage.getItem("login");
 
     if (!token) {
       return (
@@ -55,31 +52,46 @@ class Header extends React.Component {
       return (
         <Collapse navbar isOpen={this.state.isOpen}>
           <Nav className="ml-auto" navbar>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret style={buttonStyle}>
-                Welcome! {login}
-              </DropdownToggle>
-
-              <DropdownMenu right>
-                <DropdownItem>Logged in as {login}</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem onClick={() => this.onLogoutClick()}>
-                  Log Out
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
+            <Logout />
           </Nav>
         </Collapse>
       );
     }
-  }
 
-  onLogoutClick = () => {
-    localStorage.removeItem("login");
-    localStorage.removeItem("token");
-    // this.props.history.push("/");
-    this.setState({});
-  };
+    // if (!token) {
+    //   return (
+    //     <Redirect
+    //       to="/"
+    //       render={() => (
+    //         <Collapse navbar isOpen={this.state.isOpen}>
+    //           <Nav className="ml-auto" navbar>
+    //             <NavItem>
+    //               <Login />
+    //             </NavItem>
+
+    //             <NavItem>
+    //               <Register />
+    //             </NavItem>
+    //           </Nav>
+    //         </Collapse>
+    //       )}
+    //     />
+    //   );
+    // } else if (token) {
+    //   return (
+    //     <Redirect
+    //       to="/user"
+    //       render={() => (
+    //         <Collapse navbar isOpen={this.state.isOpen}>
+    //           <Nav className="ml-auto" navbar>
+    //             <Logout />
+    //           </Nav>
+    //         </Collapse>
+    //       )}
+    //     />
+    //   );
+    // }
+  }
 
   render() {
     return (
@@ -97,10 +109,6 @@ class Header extends React.Component {
 const navbarStyle = {
   color: "#fff",
   background: "#11064d"
-};
-
-const buttonStyle = {
-  color: "#fff"
 };
 
 export default Header;

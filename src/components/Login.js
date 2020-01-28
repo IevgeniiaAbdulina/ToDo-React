@@ -88,7 +88,6 @@ class Login extends React.Component {
           loadingSpinner: false
         });
       });
-    this.setState({});
   };
 
   submitLogin = e => {
