@@ -10,6 +10,10 @@ const ListItem = () => {
           <Badge pill>3</Badge>
           <i>...</i>
         </div>
+        <button style={addTaskStyle}>
+          <i>+</i>
+          Add a new task
+        </button>
       </div>
     </div>
   );
@@ -17,6 +21,7 @@ const ListItem = () => {
 
 const cardStyle = {
   position: "relative",
+  display: "flex",
   width: "413px",
   height: "138px",
   top: "3.75em",
@@ -42,6 +47,25 @@ const titleStyle = {
   display: "flex",
   alignItems: "center",
   color: "rgba(0, 0, 0, 0.87)"
+};
+
+const addTaskStyle = {
+  position: "relative",
+  width: "403px",
+  height: "48px",
+  left: "5px",
+  top: "70px",
+  background: "#FFFFFF",
+  border: "1px solid rgba(0, 0, 0, 0.08)",
+  boxShadow: " 0px 1px 3px rgba(0, 0, 0, 0.15)",
+  borderRadius: "4px",
+
+  fontStyle: "normal",
+  fontWeight: "normal",
+  fontSize: "14px",
+  lineHeight: "20px",
+  letterSpacing: "0.25px",
+  color: "rgba(0, 0, 0, 0.6)"
 };
 
 export default ListItem;
