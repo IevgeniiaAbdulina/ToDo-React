@@ -6,6 +6,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
+// import { Redirect } from "react-router-dom";
 
 const Logout = () => {
   const login = localStorage.getItem("login");
@@ -16,17 +17,23 @@ const Logout = () => {
   };
 
   return (
-    <UncontrolledDropdown nav inNavbar>
-      <DropdownToggle nav caret style={buttonStyle}>
-        Welcome! {login}
-      </DropdownToggle>
+    <div>
+      {/* {login ? (
+        <Redirect to="/" />
+      ) : ( */}
+      <UncontrolledDropdown nav inNavbar>
+        <DropdownToggle nav caret style={buttonStyle}>
+          Welcome! {login}
+        </DropdownToggle>
 
-      <DropdownMenu right>
-        <DropdownItem>Logged in as {login}</DropdownItem>
-        <DropdownItem divider />
-        <DropdownItem onClick={() => onLogoutClick()}>Log Out</DropdownItem>
-      </DropdownMenu>
-    </UncontrolledDropdown>
+        <DropdownMenu right>
+          <DropdownItem>Logged in as {login}</DropdownItem>
+          <DropdownItem divider />
+          <DropdownItem onClick={() => onLogoutClick()}>Log Out</DropdownItem>
+        </DropdownMenu>
+      </UncontrolledDropdown>
+      {/* )} */}
+    </div>
   );
 };
 

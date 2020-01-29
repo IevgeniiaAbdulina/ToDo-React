@@ -15,6 +15,7 @@ import {
   FormFeedback,
   Spinner
 } from "reactstrap";
+import { Redirect } from "react-router-dom";
 
 import axios from "axios";
 
@@ -104,15 +105,21 @@ class Login extends React.Component {
   };
 
   render() {
+    const isAuthenticated = localStorage.getItem("token");
+
     return (
       <div>
-        <NavLink
-          className="btn"
-          style={buttonStyle}
-          onClick={() => this.toggleModal()}
-        >
-          Log In
-        </NavLink>
+        {isAuthenticated ? (
+          <Redirect to="/user" />
+        ) : (
+          <NavLink
+            className="btn"
+            style={buttonStyle}
+            onClick={() => this.toggleModal()}
+          >
+            Log In
+          </NavLink>
+        )}
 
         <Modal isOpen={this.state.showLogin} toggle={this.toggleModal}>
           <ModalHeader toggle={this.submitLogin}>Log In</ModalHeader>

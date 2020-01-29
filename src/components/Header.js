@@ -13,7 +13,6 @@ import Register from "./Register";
 import Login from "./Login";
 import Logout from "./Logout";
 import background from "./background.svg";
-// import { Redirect } from "react-router-dom";
 
 class Header extends React.Component {
   constructor(props) {
@@ -58,40 +57,6 @@ class Header extends React.Component {
         </Collapse>
       );
     }
-
-    // if (!token) {
-    //   return (
-    //     <Redirect
-    //       to="/"
-    //       render={() => (
-    //         <Collapse navbar isOpen={this.state.isOpen}>
-    //           <Nav className="ml-auto" navbar>
-    //             <NavItem>
-    //               <Login />
-    //             </NavItem>
-
-    //             <NavItem>
-    //               <Register />
-    //             </NavItem>
-    //           </Nav>
-    //         </Collapse>
-    //       )}
-    //     />
-    //   );
-    // } else if (token) {
-    //   return (
-    //     <Redirect
-    //       to="/user"
-    //       render={() => (
-    //         <Collapse navbar isOpen={this.state.isOpen}>
-    //           <Nav className="ml-auto" navbar>
-    //             <Logout />
-    //           </Nav>
-    //         </Collapse>
-    //       )}
-    //     />
-    //   );
-    // }
   }
 
   render() {

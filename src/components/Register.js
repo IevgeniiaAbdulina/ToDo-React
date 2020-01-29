@@ -16,6 +16,8 @@ import {
   Spinner
 } from "reactstrap";
 
+import { Redirect } from "react-router-dom";
+
 import axios from "axios";
 
 const axiosInstance = axios.create({
@@ -106,16 +108,21 @@ class Register extends React.Component {
   };
 
   render() {
+    const registeredUser = localStorage.getItem("login");
+
     return (
       <div>
-        <NavLink
-          className="btn"
-          style={buttonStyle}
-          onClick={() => this.toggleModalRegister()}
-        >
-          Register
-        </NavLink>
-
+        {registeredUser ? (
+          <Redirect to="/login" />
+        ) : (
+          <NavLink
+            className="btn"
+            style={buttonStyle}
+            onClick={() => this.toggleModalRegister()}
+          >
+            Register
+          </NavLink>
+        )}
         <Modal
           isOpen={this.state.showRegister}
           toggle={this.toggleModalRegister}
