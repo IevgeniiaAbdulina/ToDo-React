@@ -177,7 +177,7 @@ class Login extends React.Component {
             <Button onClick={this.submitLogin}>Close</Button>
 
             <Button
-              color="success"
+              color="primary"
               type="submit"
               onClick={this.handlePostUserLogin}
             >
@@ -192,7 +192,8 @@ class Login extends React.Component {
 }
 
 const buttonStyle = {
-  color: "#fff"
+  color: "#fff",
+  fontWeight: 500
 };
 
 const nameHidden = {

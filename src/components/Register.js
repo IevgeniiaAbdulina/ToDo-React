@@ -190,7 +190,7 @@ class Register extends React.Component {
             <Button onClick={this.submitRegister}>Close</Button>
 
             <Button
-              color="success"
+              color="primary"
               type="submit"
               onClick={this.handlePostUserRegister}
             >
@@ -205,7 +205,8 @@ class Register extends React.Component {
 }
 
 const buttonStyle = {
-  color: "#fff"
+  color: "#fff",
+  fontWeight: 500
 };
 
 export default Register;
