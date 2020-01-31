@@ -1,13 +1,15 @@
 import React from "react";
 import { Button } from "reactstrap";
+import Register from "./Register";
 
-const Home = props => {
+const Home = () => {
   return (
     <div style={pageStyle}>
       <h3>Capture your ideas and inspirations in notes.</h3>
       <h5>Light, clean and free application.</h5>
-      <Button style={btnStyle} onClick={props.toggleModalRegister}>
-        Try it now
+      <Button style={btnStyle}>
+        {/* Try it now */}
+        <Register />
       </Button>
     </div>
   );

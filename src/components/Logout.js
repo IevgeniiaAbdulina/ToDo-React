@@ -9,16 +9,17 @@ import {
 // import { Redirect } from "react-router-dom";
 
 const Logout = () => {
-  const login = localStorage.getItem("login");
-
   const onLogoutClick = () => {
     localStorage.removeItem("login");
     localStorage.removeItem("token");
   };
 
+  const login = localStorage.getItem("login");
+  // const logout = localStorage.getItem("token");
+
   return (
     <div>
-      {/* {login ? (
+      {/* {!logout ? (
         <Redirect to="/" />
       ) : ( */}
       <UncontrolledDropdown nav inNavbar>

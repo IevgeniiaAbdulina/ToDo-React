@@ -95,8 +95,8 @@ class Register extends React.Component {
   };
 
   submitRegister = e => {
-    this.toggleModalRegister();
     e.preventDefault();
+    this.toggleModalRegister();
     this.setState({
       loginUser: "",
       emailUser: "",

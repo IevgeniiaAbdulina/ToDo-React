@@ -92,8 +92,8 @@ class Login extends React.Component {
   };
 
   submitLogin = e => {
-    this.toggleModal();
     e.preventDefault();
+    this.toggleModal();
     this.setState({
       emailUser: "",
       passwordUser: "",
