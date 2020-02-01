@@ -9,10 +9,10 @@ const ListItem = () => {
           check_circle
         </i> */}
 
-        <i class="material-icons">radio_button_unchecked</i>
+        <i className="material-icons">radio_button_unchecked</i>
         <div style={taskTextStyle}>Task huhkdjv jdbvdsv jhbdjvhbshd1</div>
       </div>
-      <i class="material-icons">edit</i>
+      <i className="material-icons">edit</i>
     </div>
   );
 };

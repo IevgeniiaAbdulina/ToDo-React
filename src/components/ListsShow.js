@@ -3,6 +3,28 @@ import { Container, Row, Col, CardColumns, Button } from "reactstrap";
 import ListItem from "./lists/ListItem";
 
 class ListsShow extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showList: false
+    };
+  }
+
+  onShowList = () => {
+    console.log("add list");
+    this.setState({
+      showList: true
+    });
+  };
+
+  isListShow() {
+    if (this.state.showList) {
+      return <ListItem />;
+    }
+    return;
+  }
+
   render() {
     return (
       <div style={pageStyle}>
@@ -12,12 +34,15 @@ class ListsShow extends React.Component {
               <h5>Keep your brain organized</h5>
             </Col>
             <Col md={{ span: 3, offset: 3 }}>
-              <Button style={buttonAddListStyle}>Add List</Button>
+              <Button style={buttonAddListStyle} onClick={this.onShowList}>
+                Add List
+              </Button>
             </Col>
           </Row>
           <div style={listsStyle}>
             <CardColumns>
-              <ListItem />
+              {this.isListShow()}
+              {/* <ListItem /> */}
             </CardColumns>
           </div>
         </Container>
