@@ -1,7 +1,6 @@
 import React from "react";
-import { Container, Row, Col, Button } from "reactstrap";
+import { Container, Row, Col, CardColumns, Button } from "reactstrap";
 import ListItem from "./lists/ListItem";
-// import Lists from "./lists/Lists";
 
 class ListsShow extends React.Component {
   render() {
@@ -17,8 +16,9 @@ class ListsShow extends React.Component {
             </Col>
           </Row>
           <div style={listsStyle}>
-            {/* <Lists /> */}
-            <ListItem />
+            <CardColumns>
+              <ListItem />
+            </CardColumns>
           </div>
         </Container>
       </div>

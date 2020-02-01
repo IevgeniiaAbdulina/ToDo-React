@@ -5,13 +5,10 @@ import {
   Badge,
   Button,
   CardBody,
-  // ButtonDropdown,
   Dropdown,
   DropdownMenu,
   DropdownItem,
   DropdownToggle
-  // CardText
-  // CardColumns
 } from "reactstrap";
 
 import TaskItem from "../tasks/TaskItem";
@@ -21,61 +18,59 @@ const ListItem = () => {
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
   return (
-    // <CardColumns>
-    <Card style={cardStyle}>
-      <CardTitle style={titleStyle}>
-        <div>
-          List title{" "}
-          <Badge pill style={badgeStyle}>
-            1
-          </Badge>
-        </div>
-
-        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle
-            tag="span"
-            data-toggle="dropdown"
-            aria-expanded={dropdownOpen}
-          >
-            <i className="material-icons" style={icStyle}>
-              more_horiz
-            </i>
-          </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem header>List Actions</DropdownItem>
-            <DropdownItem divider />
-
-            <DropdownItem>Rename list</DropdownItem>
-            <DropdownItem>Delete list</DropdownItem>
-            <DropdownItem divider />
-
-            <DropdownItem>Show all tasks</DropdownItem>
-            <DropdownItem>Show all checked tasks</DropdownItem>
-            <DropdownItem>Show all unchecked tasks</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      </CardTitle>
-      <CardBody style={cardBodyStyle}>
-        <Button style={addTaskStyle}>
-          <div style={buttonTextStyle}>
-            <i className="material-icons">add</i> Add a new task
+    <Card>
+      <div className="card-list" style={cardStyle}>
+        <CardTitle style={titleStyle}>
+          <div>
+            List title{" "}
+            <Badge pill style={badgeStyle}>
+              1
+            </Badge>
           </div>
-        </Button>
-        <TaskItem />
-      </CardBody>
+
+          <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+            <DropdownToggle
+              tag="span"
+              data-toggle="dropdown"
+              aria-expanded={dropdownOpen}
+            >
+              <i className="material-icons" style={icStyle}>
+                more_horiz
+              </i>
+            </DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem header>List Actions</DropdownItem>
+              <DropdownItem divider />
+
+              <DropdownItem>Rename list</DropdownItem>
+              <DropdownItem>Delete list</DropdownItem>
+              <DropdownItem divider />
+
+              <DropdownItem>Show all tasks</DropdownItem>
+              <DropdownItem>Show all checked tasks</DropdownItem>
+              <DropdownItem>Show all unchecked tasks</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </CardTitle>
+        <CardBody style={cardBodyStyle}>
+          <Button style={addTaskStyle}>
+            <div style={buttonTextStyle}>
+              <i className="material-icons">add</i> Add a new task
+            </div>
+          </Button>
+          <TaskItem />
+        </CardBody>
+      </div>
     </Card>
-    // </CardColumns>
   );
 };
 
 const cardStyle = {
   position: "relative",
   display: "flex",
-  width: "328px",
+  width: "100%",
   height: "auto",
 
-  top: "3.75em",
-  margin: " 0 16px",
   background: "#FFFFFF",
   boxShadow:
     "0px 1px 3px rgba(0, 0, 0, 0.2), 0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14)",
@@ -86,7 +81,7 @@ const titleStyle = {
   position: "absolute",
   display: "flex",
   justifyContent: "space-between",
-  width: "326px",
+  width: "100%",
   height: "60px",
   padding: "0 20px",
   background: "#F9F9F9",
@@ -117,16 +112,13 @@ const icStyle = {
 const cardBodyStyle = {
   position: "relative",
   marginTop: "60px",
-  padding: "0"
+  padding: "10px 5px"
 };
 
 const addTaskStyle = {
   position: "relative",
-  width: "316px",
+  width: "100%",
   height: "48px",
-  left: "5px",
-  top: "10px",
-  marginBottom: "10px",
   background: "#FFFFFF",
   border: "1px solid rgba(0, 0, 0, 0.08)",
   boxShadow: " 0px 1px 3px rgba(0, 0, 0, 0.15)",
