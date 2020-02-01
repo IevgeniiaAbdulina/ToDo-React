@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardTitle,
   Badge,
   Button,
   CardBody,
-  CardText
+  // ButtonDropdown,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
+  DropdownToggle
+  // CardText
   // CardColumns
 } from "reactstrap";
 
+import TaskItem from "../tasks/TaskItem";
+
 const ListItem = () => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggle = () => setDropdownOpen(prevState => !prevState);
+
   return (
     // <CardColumns>
     <Card style={cardStyle}>
@@ -17,19 +27,41 @@ const ListItem = () => {
         <div>
           List title{" "}
           <Badge pill style={badgeStyle}>
-            3
+            1
           </Badge>
         </div>
 
-        <i class="material-icons">more_horiz</i>
+        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+          <DropdownToggle
+            tag="span"
+            data-toggle="dropdown"
+            aria-expanded={dropdownOpen}
+          >
+            <i className="material-icons" style={icStyle}>
+              more_horiz
+            </i>
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem header>List Actions</DropdownItem>
+            <DropdownItem divider />
+
+            <DropdownItem>Rename list</DropdownItem>
+            <DropdownItem>Delete list</DropdownItem>
+            <DropdownItem divider />
+
+            <DropdownItem>Show all tasks</DropdownItem>
+            <DropdownItem>Show all checked tasks</DropdownItem>
+            <DropdownItem>Show all unchecked tasks</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
       </CardTitle>
-      <Button style={addTaskStyle}>
-        <div style={buttonTextStyle}>
-          <i class="material-icons">add</i> Add a new task
-        </div>
-      </Button>
-      <CardBody>
-        <CardText>task</CardText>
+      <CardBody style={cardBodyStyle}>
+        <Button style={addTaskStyle}>
+          <div style={buttonTextStyle}>
+            <i className="material-icons">add</i> Add a new task
+          </div>
+        </Button>
+        <TaskItem />
       </CardBody>
     </Card>
     // </CardColumns>
@@ -40,7 +72,8 @@ const cardStyle = {
   position: "relative",
   display: "flex",
   width: "328px",
-  height: "128px",
+  height: "auto",
+
   top: "3.75em",
   margin: " 0 16px",
   background: "#FFFFFF",
@@ -72,8 +105,19 @@ const badgeStyle = {
   backgroundColor: "#FBCED9",
   fontStyle: "normal",
   fontWeight: "normal",
-  fontSize: "1.125em",
+  fontSize: "0.75em",
   marginLeft: "0.625em"
+};
+
+const icStyle = {
+  color: "rgba(0, 0, 0, 0.6)",
+  cursor: "pointer"
+};
+
+const cardBodyStyle = {
+  position: "relative",
+  marginTop: "60px",
+  padding: "0"
 };
 
 const addTaskStyle = {
@@ -81,7 +125,7 @@ const addTaskStyle = {
   width: "316px",
   height: "48px",
   left: "5px",
-  top: "70px",
+  top: "10px",
   marginBottom: "10px",
   background: "#FFFFFF",
   border: "1px solid rgba(0, 0, 0, 0.08)",
