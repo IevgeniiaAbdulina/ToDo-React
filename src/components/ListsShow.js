@@ -2,28 +2,68 @@ import React from "react";
 import { Container, Row, Col, CardColumns, Button } from "reactstrap";
 import ListItem from "./lists/ListItem";
 
+import axios from "axios";
+const axiosInstance = axios.create({
+  baseURL: "https://cc19todoapp.herokuapp.com"
+});
+axios.defaults.headers.common["x-auth-token"] = `${localStorage.getItem(
+  "token"
+)}`;
+
 class ListsShow extends React.Component {
   constructor(props) {
     super(props);
 
+    // this.isListShow = this.isListShow.bind(this);
+
     this.state = {
-      showList: false
+      lists: [
+        { id: 1, body: 11 }
+        // { id: 2, body: 22 },
+        // { id: 3, body: 33 }
+      ],
+      // showList: false
+      userId: "",
+      nameList: "",
+      responseErr: ""
     };
   }
 
-  onShowList = () => {
-    console.log("add list");
-    this.setState({
-      showList: true
-    });
+  addNewList = () => {
+    axiosInstance
+      .post("/api/lists/", {
+        _userID: this.state.userId,
+        name: this.state.nameList
+      })
+      .then(res => {
+        console.log(res);
+        this.setState({
+          _userID: res.user._id,
+          name: res.body.name
+        }).catch(err => {
+          console.log(err);
+          this.setState({
+            responseErr: "Alert!"
+          });
+        });
+      });
   };
 
-  isListShow() {
-    if (this.state.showList) {
-      return <ListItem />;
-    }
-    return;
-  }
+  onShowList = () => {
+    console.log("add list");
+    this.addNewList();
+    console.log(axios.defaults.headers.common["x-auth-token"]);
+
+    // this.setState({
+    //   showList: true
+    // });
+  };
+
+  // isListShow() {
+  //   if (this.state.showList) {
+  //     return <ListItem />;
+  //   }
+  // }
 
   render() {
     return (
@@ -41,7 +81,10 @@ class ListsShow extends React.Component {
           </Row>
           <div style={listsStyle}>
             <CardColumns>
-              {this.isListShow()}
+              {this.state.lists.map((list, index) => {
+                return <ListItem key={list.id} body={list.body} />;
+              })}
+              {/* {this.isListShow()} */}
               {/* <ListItem /> */}
             </CardColumns>
           </div>

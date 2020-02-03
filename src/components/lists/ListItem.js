@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
   CardTitle,
@@ -8,61 +8,173 @@ import {
   Dropdown,
   DropdownMenu,
   DropdownItem,
-  DropdownToggle
+  DropdownToggle,
+  FormGroup,
+  Input
 } from "reactstrap";
 
-import TaskItem from "../tasks/TaskItem";
+import axios from "axios";
+axios.defaults.headers.common["x-auth-token"] = `${localStorage.getItem(
+  "token"
+)}`;
+const axiosInstance = axios.create({
+  baseURL: "https://cc19todoapp.herokuapp.com"
+});
+// axios.defaults.headers.common["x-auth-token"] = `${localStorage.getItem(
+//   "token"
+// )}`;
 
-const ListItem = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const toggle = () => setDropdownOpen(prevState => !prevState);
+class ListItem extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <Card>
-      <div className="card-list" style={cardStyle}>
-        <CardTitle style={titleStyle}>
-          <div>
-            List title{" "}
-            <Badge pill style={badgeStyle}>
-              1
-            </Badge>
+    this.toggle = this.toggle.bind(this);
+    // this.onChange = this.onChange.bind(this);
+
+    this.state = {
+      dropdownOpen: false,
+      listName: "",
+      userId: ""
+    };
+  }
+
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
+
+  onchange = e => {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  getUserId = () => {
+    // auth....?
+  };
+
+  handlePostNewList = () => {
+    axiosInstance
+      .post("/api/lists/", {
+        name: this.state.listName
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  saveListName = e => {
+    e.preventDefault();
+    this.handlePostNewList();
+    // post new LIST to DB
+    // get LIST to user
+  };
+
+  render() {
+    return (
+      <div>
+        <Card style={formCardStyle}>
+          <FormGroup style={formStyle}>
+            <Input
+              type="textarea"
+              name="listName"
+              id="taskTextName"
+              placeholder="Task name..."
+              value={this.state.listName}
+              onChange={this.onchange}
+              required
+            />
+          </FormGroup>
+          <div style={btnContainerStyle}>
+            <Button color="primary" onClick={this.handlePostNewList}>
+              Save
+            </Button>
+            <i className="material-icons" style={icFormStyle}>
+              close
+            </i>
           </div>
+        </Card>
 
-          <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-            <DropdownToggle
-              tag="span"
-              data-toggle="dropdown"
-              aria-expanded={dropdownOpen}
-            >
-              <i className="material-icons" style={icStyle}>
-                more_horiz
-              </i>
-            </DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem header>List Actions</DropdownItem>
-              <DropdownItem divider />
+        <Card>
+          <div className="card-list" style={cardStyle}>
+            <CardTitle style={titleStyle}>
+              <div>
+                List title{" "}
+                <Badge pill style={badgeStyle}>
+                  1
+                </Badge>
+              </div>
 
-              <DropdownItem>Rename list</DropdownItem>
-              <DropdownItem>Delete list</DropdownItem>
-              <DropdownItem divider />
+              <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                <DropdownToggle
+                  tag="span"
+                  data-toggle="dropdown"
+                  aria-expanded={this.state.dropdownOpen}
+                >
+                  <i className="material-icons" style={icStyle}>
+                    more_horiz
+                  </i>
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem header>List Actions</DropdownItem>
+                  <DropdownItem divider />
 
-              <DropdownItem>Show all tasks</DropdownItem>
-              <DropdownItem>Show all checked tasks</DropdownItem>
-              <DropdownItem>Show all unchecked tasks</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </CardTitle>
-        <CardBody style={cardBodyStyle}>
-          <Button style={addTaskStyle}>
-            <div style={buttonTextStyle}>
-              <i className="material-icons">add</i> Add a new task
-            </div>
-          </Button>
-          <TaskItem />
-        </CardBody>
+                  <DropdownItem>Rename list</DropdownItem>
+                  <DropdownItem>Delete list</DropdownItem>
+                  <DropdownItem divider />
+
+                  <DropdownItem>Show all tasks</DropdownItem>
+                  <DropdownItem>Show all checked tasks</DropdownItem>
+                  <DropdownItem>Show all unchecked tasks</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </CardTitle>
+            <CardBody style={cardBodyStyle}>
+              <Button style={addTaskStyle}>
+                <div style={buttonTextStyle}>
+                  <i className="material-icons">add</i> Add a new task
+                </div>
+              </Button>
+              {/* <TaskItem /> */}
+            </CardBody>
+          </div>
+        </Card>
       </div>
-    </Card>
-  );
+    );
+  }
+}
+
+const formCardStyle = {
+  padding: "5px 5px"
+};
+
+const btnContainerStyle = {
+  display: "flex",
+  alignItems: "center"
+};
+
+const icFormStyle = {
+  color: "rgba(0, 0, 0, 0.6)",
+  cursor: "pointer",
+  margin: "0 20px"
+};
+
+const formStyle = {
+  position: "relative",
+  display: "flex",
+  width: "100%",
+  height: "60px",
+  fontStyle: "normal",
+  fontWeight: 500,
+  fontSize: "1.25em",
+  lineHeight: "1.5em",
+  color: "rgba(0, 0, 0, 0.87)"
 };
 
 const cardStyle = {

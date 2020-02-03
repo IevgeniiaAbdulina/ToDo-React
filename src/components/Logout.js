@@ -28,7 +28,7 @@ const Logout = () => {
         </DropdownToggle>
 
         <DropdownMenu right>
-          <DropdownItem>Logged in as {login}</DropdownItem>
+          <DropdownItem>You are logged in {login}</DropdownItem>
           <DropdownItem divider />
           <DropdownItem onClick={() => onLogoutClick()}>Log Out</DropdownItem>
         </DropdownMenu>
