@@ -10,7 +10,8 @@ import {
   DropdownItem,
   DropdownToggle,
   FormGroup,
-  Input
+  Input,
+  Alert
 } from "reactstrap";
 
 import axios from "axios";
@@ -30,13 +31,22 @@ class ListItem extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     // this.onChange = this.onChange.bind(this);
+    this.onShowAlert = this.onShowAlert.bind(this);
 
     this.state = {
       dropdownOpen: false,
       listName: "",
-      userId: ""
+      visibleAlert: false
     };
   }
+
+  onShowAlert = () => {
+    this.setState({ visibleAlert: true }, () => {
+      window.setTimeout(() => {
+        this.setState({ visibleAlert: false });
+      }, 4000);
+    });
+  };
 
   toggle() {
     this.setState({
@@ -44,7 +54,7 @@ class ListItem extends React.Component {
     });
   }
 
-  onchange = e => {
+  onChange = e => {
     const name = e.target.name;
     const value = e.target.value;
     this.setState({
@@ -66,6 +76,7 @@ class ListItem extends React.Component {
       })
       .catch(err => {
         console.log(err);
+        this.onShowAlert();
       });
   };
 
@@ -87,7 +98,7 @@ class ListItem extends React.Component {
               id="taskTextName"
               placeholder="Task name..."
               value={this.state.listName}
-              onChange={this.onchange}
+              onChange={this.onChange}
               required
             />
           </FormGroup>
@@ -100,6 +111,10 @@ class ListItem extends React.Component {
             </i>
           </div>
         </Card>
+
+        <Alert color="info" isOpen={this.state.visibleAlert}>
+          You has reached the limit - max 3 lists!
+        </Alert>
 
         <Card>
           <div className="card-list" style={cardStyle}>
