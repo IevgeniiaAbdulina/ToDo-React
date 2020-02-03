@@ -115,13 +115,31 @@ class ListItem extends React.Component {
                 <DropdownToggle
                   tag="span"
                   data-toggle="dropdown"
-                  aria-expanded={this.state.dropdownOpen}
+                  // aria-expanded={this.state.dropdownOpen}
                 >
                   <i className="material-icons" style={icStyle}>
                     more_horiz
                   </i>
                 </DropdownToggle>
-                <DropdownMenu>
+                <DropdownMenu
+                  right
+                  modifiers={{
+                    setMaxHeight: {
+                      enabled: true,
+                      order: 890,
+                      fn: data => {
+                        return {
+                          ...data,
+                          styles: {
+                            ...data.styles,
+                            overflow: "auto",
+                            maxHeight: "160px"
+                          }
+                        };
+                      }
+                    }
+                  }}
+                >
                   <DropdownItem header>List Actions</DropdownItem>
                   <DropdownItem divider />
 
