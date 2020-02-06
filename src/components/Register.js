@@ -113,7 +113,7 @@ class Register extends React.Component {
     return (
       <div>
         {registeredUser ? (
-          <Redirect to="/login" />
+          <Redirect push to="/login" />
         ) : (
           <NavLink
             className="btn"

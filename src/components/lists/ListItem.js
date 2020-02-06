@@ -21,16 +21,12 @@ axios.defaults.headers.common["x-auth-token"] = `${localStorage.getItem(
 const axiosInstance = axios.create({
   baseURL: "https://cc19todoapp.herokuapp.com"
 });
-// axios.defaults.headers.common["x-auth-token"] = `${localStorage.getItem(
-//   "token"
-// )}`;
 
 class ListItem extends React.Component {
   constructor(props) {
     super(props);
 
     this.toggle = this.toggle.bind(this);
-    // this.onChange = this.onChange.bind(this);
     this.onShowAlert = this.onShowAlert.bind(this);
 
     this.state = {
@@ -83,8 +79,6 @@ class ListItem extends React.Component {
   saveListName = e => {
     e.preventDefault();
     this.handlePostNewList();
-    // post new LIST to DB
-    // get LIST to user
   };
 
   render() {
@@ -111,7 +105,6 @@ class ListItem extends React.Component {
             </i>
           </div>
         </Card>
-
         <Alert color="info" isOpen={this.state.visibleAlert}>
           You has reached the limit - max 3 lists!
         </Alert>
