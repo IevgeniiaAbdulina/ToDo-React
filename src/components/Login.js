@@ -69,7 +69,9 @@ class Login extends React.Component {
         password: this.state.passwordUser
       })
       .then(res => {
-        localStorage.setItem("token", res.data);
+        console.log(res);
+        localStorage.setItem("login", res.data.login);
+        localStorage.setItem("token", res.data.token);
         this.setState({
           responseDataUser:
             "You have successfully logged in to your ToDo List.",
@@ -110,7 +112,7 @@ class Login extends React.Component {
     return (
       <div>
         {isAuthenticated ? (
-          <Redirect to="/user" />
+          <Redirect push to="/user" />
         ) : (
           <NavLink
             className="btn"

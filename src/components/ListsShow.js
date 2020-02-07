@@ -1,8 +1,23 @@
 import React from "react";
-import { Container, Row, Col, Button } from "reactstrap";
-import Lists from "./lists/Lists";
+import { Container, Row, Col, CardColumns, Button } from "reactstrap";
+import ListItem from "./lists/ListItem";
 
 class ListsShow extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      lists: [{ id: 1, body: 11 }],
+      userId: "",
+      nameList: "",
+      responseErr: ""
+    };
+  }
+
+  onShowList = () => {
+    console.log("add list");
+  };
+
   render() {
     return (
       <div style={pageStyle}>
@@ -12,14 +27,19 @@ class ListsShow extends React.Component {
               <h5>Keep your brain organized</h5>
             </Col>
             <Col md={{ span: 3, offset: 3 }}>
-              <Button style={buttonAddListStyle}>Add List</Button>
+              <Button style={buttonAddListStyle} onClick={this.onShowList}>
+                Add List
+              </Button>
             </Col>
           </Row>
-          <Row style={listsStyle}>
-            <Col>
-              <Lists />
-            </Col>
-          </Row>
+          <div style={listsStyle}>
+            <CardColumns>
+              {this.state.lists.map(list => {
+                return <ListItem key={list.id} body={list.body} />;
+              })}
+              {/* <ListItem /> */}
+            </CardColumns>
+          </div>
         </Container>
       </div>
     );
