@@ -59,6 +59,9 @@ class Header extends React.Component {
     }
   }
 
+  // componentDidMount() {
+  // }
+
   render() {
     return (
       <div>
@@ -90,7 +93,8 @@ const backgroundStyle = {
   top: "0",
   width: "100%",
   backgroundImage: `url(${background})`,
-  height: "520px"
+  // height: "520px"
+  height: "80%"
 };
 
 export default Header;

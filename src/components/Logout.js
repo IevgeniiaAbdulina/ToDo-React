@@ -24,11 +24,11 @@ const Logout = () => {
       ) : ( */}
       <UncontrolledDropdown nav inNavbar>
         <DropdownToggle nav caret style={buttonStyle}>
-          Welcome! {login}
+          Welcome, {login}
         </DropdownToggle>
 
         <DropdownMenu right>
-          <DropdownItem>You are logged in {login}</DropdownItem>
+          <DropdownItem>You are logged in</DropdownItem>
           <DropdownItem divider />
           <DropdownItem onClick={() => onLogoutClick()}>Log Out</DropdownItem>
         </DropdownMenu>

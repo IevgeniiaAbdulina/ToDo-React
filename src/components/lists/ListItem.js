@@ -14,6 +14,8 @@ import {
   Alert
 } from "reactstrap";
 
+import TaskItem from "../tasks/TaskItem";
+
 import axios from "axios";
 axios.defaults.headers.common["x-auth-token"] = `${localStorage.getItem(
   "token"
@@ -120,11 +122,7 @@ class ListItem extends React.Component {
               </div>
 
               <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                <DropdownToggle
-                  tag="span"
-                  data-toggle="dropdown"
-                  // aria-expanded={this.state.dropdownOpen}
-                >
+                <DropdownToggle tag="span" data-toggle="dropdown">
                   <i className="material-icons" style={icStyle}>
                     more_horiz
                   </i>
@@ -167,7 +165,7 @@ class ListItem extends React.Component {
                   <i className="material-icons">add</i> Add a new task
                 </div>
               </Button>
-              {/* <TaskItem /> */}
+              <TaskItem />
             </CardBody>
           </div>
         </Card>

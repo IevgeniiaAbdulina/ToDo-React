@@ -10,7 +10,7 @@ const ListItem = () => {
         </i> */}
 
         <i className="material-icons">radio_button_unchecked</i>
-        <div style={taskTextStyle}>Task huhkdjv jdbvdsv jhbdjvhbshd1</div>
+        <div style={taskTextStyle}>Task name 1</div>
       </div>
       <i className="material-icons">edit</i>
     </div>

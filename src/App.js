@@ -24,5 +24,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// @media https://reacttraining.com/react-router/core/guides/philosophy
