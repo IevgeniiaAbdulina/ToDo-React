@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 
+import DashboardHeader from "./DashboardHeader";
 import ListsCatalog from "../lists/ListsCatalog";
 
 class Dashboard extends Component {
   render() {
     return (
       <div>
-        <div>
-          <ListsCatalog />
-        </div>
+        <DashboardHeader />
+        <ListsCatalog />
       </div>
     );
   }

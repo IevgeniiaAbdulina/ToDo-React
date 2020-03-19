@@ -4,6 +4,11 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 // NEW REDUX PROJECT
 import Dashboard from "./components/dashboard/Dashboard";
 import Navbar from "./components/layout/Navbar";
+import ListDetails from "./components/lists/ListDetails";
+import SignUp from "./components/auth/SignUp";
+import SignIn from "./components/auth/SignIn";
+import CreateList from "./components/lists/CreateList";
+import CreateTask from "./components/tasks/CreateTask";
 
 // import Axios from "./Axios";
 // import Header from "./components/Header";
@@ -27,6 +32,12 @@ class App extends React.Component {
           <Navbar />
           <Switch>
             <Route exact path="/" component={Dashboard} />
+            <Route path="/list/:id" component={ListDetails} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/signin" component={SignIn} />
+            <Route path="/create/list" component={CreateList} />
+            <Route path="/create/task" component={CreateTask} />
+
             {/* <Route path={"/"} component={Home} /> */}
             {/* <Route path={"/login"} component={LoginPage} /> */}
             {/* <Route path={"/user"} component={ListsShow} /> */}

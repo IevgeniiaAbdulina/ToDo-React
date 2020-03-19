@@ -5,8 +5,8 @@ const SignedInLinks = () => {
   return (
     <ul>
       <li>
-        <NavLink to="/">Welcome...</NavLink>
-        <NavLink to="/">Log Out</NavLink>
+        <h5>Welcome...</h5>
+        <NavLink to="/">LogOut</NavLink>
       </li>
     </ul>
   );
