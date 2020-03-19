@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Axios from "./Axios";
 // import Header from "./components/Header";
@@ -14,18 +14,20 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Axios />
-        {/* <Axios onLoginRequested={this.onLoginRequested} /> */}
-        {/* <Header onLoginRequested={this.onLoginRequested} /> */}
+      <BrowserRouter>
+        <div>
+          <Axios />
+          {/* <Axios onLoginRequested={this.onLoginRequested} /> */}
+          {/* <Header onLoginRequested={this.onLoginRequested} /> */}
 
-        <Switch>
-          <Route exact path={"/"} component={Home} />
-          <Route exact path={"/login"} component={LoginPage} />
-          <Route exact path={"/user"} component={ListsShow} />
-          <Route exact path="*" component={() => "404 PAGE NOT FOUND"} />
-        </Switch>
-      </div>
+          <Switch>
+            <Route exact path={"/"} component={Home} />
+            <Route exact path={"/login"} component={LoginPage} />
+            <Route exact path={"/user"} component={ListsShow} />
+            <Route exact path="*" component={() => "404 PAGE NOT FOUND"} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
