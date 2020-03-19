@@ -17,11 +17,11 @@ import {
 } from "reactstrap";
 import { Redirect } from "react-router-dom";
 
-import axios from "axios";
+// import axios from "axios";
 
-const axiosInstance = axios.create({
-  baseURL: "https://cc19todoapp.herokuapp.com"
-});
+// const axiosInstance = axios.create({
+//   baseURL: "https://cc19todoapp.herokuapp.com"
+// });
 
 class Login extends React.Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class Login extends React.Component {
 
     this.toggleModal = this.toggleModal.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.handlePostUserLogin = this.handlePostUserLogin.bind(this);
+    // this.handlePostUserLogin = this.handlePostUserLogin.bind(this);
     this.submitLogin = this.submitLogin.bind(this);
 
     this.state = {
@@ -58,52 +58,88 @@ class Login extends React.Component {
     });
   };
 
-  handlePostUserLogin = () => {
-    this.setState({
-      loadingSpinner: true
-    });
+  // handlePostUserLogin = () => {
+  //   this.setState({
+  //     loadingSpinner: true
+  //   });
 
-    axiosInstance
-      .post("/api/auth/", {
-        email: this.state.emailUser,
-        password: this.state.passwordUser
-      })
-      .then(res => {
-        console.log(res);
-        localStorage.setItem("login", res.data.login);
-        localStorage.setItem("token", res.data.token);
-        this.setState({
-          responseDataUser:
-            "You have successfully logged in to your ToDo List.",
-          validInput: true
-        });
-      })
-      .catch(err => {
-        console.log(err, err.res);
-        this.setState({
-          responseDataUser:
-            "Sorry your email or password was incorrect! Please try again.",
-          invalidInput: true
-        });
-      })
-      .then(() => {
-        this.setState({
-          loadingSpinner: false
-        });
-      });
-  };
+  //   axiosInstance
+  //     .post(
+  //       "/api/auth/",
+  //       {
+  //         email: this.state.emailUser,
+  //         password: this.state.passwordUser
+  //       },
+  //       {
+  //         cancelToken: source.token
+  //       }
+  //     )
+  //     .then(res => {
+  //       console.log(res);
+  //       localStorage.setItem("login", res.data.login);
+  //       localStorage.setItem("token", res.data.token);
+  //       this.setState({
+  //         responseDataUser:
+  //           "You have successfully logged in to your ToDo List.",
+  //         validInput: true
+  //       });
+  //       this.props.onLoggedInEventChild();
+  //     })
+  //     .catch(err => {
+  //       console.log(err, err.res);
+  //       this.setState({
+  //         responseDataUser:
+  //           "Sorry your email or password was incorrect! Please try again.",
+  //         invalidInput: true
+  //       });
+  //     })
+  //     .then(() => {
+  //       this.setState({
+  //         loadingSpinner: false
+  //       });
+  //     });
+  // };
 
   submitLogin = e => {
     e.preventDefault();
     this.toggleModal();
+    // should I try this.setState({}) ???
     this.setState({
       emailUser: "",
       passwordUser: "",
       showLogin: false,
       responseDataUser: "",
       validInput: null,
-      invalidInput: null
+      invalidInput: null,
+      loadingSpinner: false
     });
+  };
+
+  handleButtonLoginClick = () => {
+    this.setState({
+      loadingSpinner: true
+    });
+    const emailUser = this.state.emailUser;
+    const passwordUser = this.state.passwordUser;
+
+    this.props.userIsLogged(emailUser, passwordUser);
+    const login = localStorage.getItem("login");
+
+    if (login) {
+      this.setState({
+        responseDataUser: "You have successfully logged in to your ToDo List.",
+        validInput: true
+      });
+    } else {
+      this.setState({
+        responseDataUser:
+          "Sorry your email or password was incorrect! Please try again.",
+        invalidInput: true
+      });
+    }
+
+    this.props.onLoggedInEventChild();
+    // this.props.onLoginButtonCLicked();
   };
 
   render() {
@@ -183,12 +219,19 @@ class Login extends React.Component {
             </Form>
           </ModalBody>
           <ModalFooter>
-            <Button onClick={this.submitLogin}>Close</Button>
+            {/* <Button onClick={this.submitLogin}>Close</Button> */}
 
             <Button
               color="primary"
               type="submit"
-              onClick={this.handlePostUserLogin}
+              // onClick={this.handlePostUserLogin}
+
+              // onClick={() => {
+              //   this.props.userIsLogged();
+              //   this.props.onLoggedInEventChild();
+              //   this.props.onLoginButtonCLicked();
+              // }}
+              onClick={this.handleButtonLoginClick}
             >
               Log In{" "}
               {this.state.loadingSpinner && <Spinner size="sm" color="light" />}

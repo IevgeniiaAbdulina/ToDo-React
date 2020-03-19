@@ -9,10 +9,9 @@ import {
   NavItem
 } from "reactstrap";
 
-import Register from "./Register";
+// import Register from "./Register";
 import Login from "./Login";
 import Logout from "./Logout";
-import background from "./background.svg";
 
 class Header extends React.Component {
   constructor(props) {
@@ -21,7 +20,8 @@ class Header extends React.Component {
     this.toggle = this.toggle.bind(this);
 
     this.state = {
-      isOpen: false
+      isOpen: false,
+      isLoggedIn: false
     };
   }
 
@@ -31,6 +31,13 @@ class Header extends React.Component {
     });
   }
 
+  onLoggedInEvent = () => {
+    console.log("setState: true = Header");
+    this.setState({
+      isLoggedIn: true
+    });
+  };
+
   isLogged() {
     const token = localStorage.getItem("token");
 
@@ -39,12 +46,16 @@ class Header extends React.Component {
         <Collapse navbar isOpen={this.state.isOpen}>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <Login />
+              <Login
+                userIsLogged={this.props.handleUser}
+                onLoggedInEventChild={this.onLoggedInEvent}
+                // onLoginButtonCLicked={this.props.funcFromApp}
+              />
             </NavItem>
 
-            <NavItem>
+            {/* <NavItem>
               <Register />
-            </NavItem>
+            </NavItem> */}
           </Nav>
         </Collapse>
       );
@@ -59,9 +70,6 @@ class Header extends React.Component {
     }
   }
 
-  // componentDidMount() {
-  // }
-
   render() {
     return (
       <div>
@@ -70,7 +78,6 @@ class Header extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           {this.isLogged()}
         </Navbar>
-        <div style={backgroundStyle}></div>
       </div>
     );
   }
@@ -81,20 +88,6 @@ const navbarStyle = {
   color: "#fff",
   background: "#11064d",
   fontWeight: 500
-};
-
-const backgroundStyle = {
-  zIndex: "-1",
-  content: "",
-  position: "absolute",
-  backgroundPosition: "center",
-  backgroundSize: "cover",
-  backgroundRepeat: "no-repeat",
-  top: "0",
-  width: "100%",
-  backgroundImage: `url(${background})`,
-  // height: "520px"
-  height: "80%"
 };
 
 export default Header;

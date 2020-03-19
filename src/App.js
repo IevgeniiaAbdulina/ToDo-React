@@ -1,17 +1,24 @@
 import React from "react";
-
 import { Route, Switch } from "react-router-dom";
 
-import Header from "./components/Header";
+import Axios from "./Axios";
+// import Header from "./components/Header";
 import Home from "./components/Home";
 import ListsShow from "./components/ListsShow";
 import LoginPage from "./components/LoginPage";
 
 class App extends React.Component {
+  // onLoginRequested() {
+  //   console.log("Login button has been clicked = App");
+  // }
+
   render() {
     return (
       <div>
-        <Header />
+        <Axios />
+        {/* <Axios onLoginRequested={this.onLoginRequested} /> */}
+        {/* <Header onLoginRequested={this.onLoginRequested} /> */}
+
         <Switch>
           <Route exact path={"/"} component={Home} />
           <Route exact path={"/login"} component={LoginPage} />

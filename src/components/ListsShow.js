@@ -10,12 +10,20 @@ class ListsShow extends React.Component {
       lists: [{ id: 1, body: 11 }],
       userId: "",
       nameList: "",
-      responseErr: ""
+      responseErr: "",
+      showPageLists: false
     };
   }
 
   onShowList = () => {
     console.log("add list");
+  };
+
+  showListsShowPage = () => {
+    console.log("setState: true = listsShow");
+    this.setState({
+      showPageLists: true
+    });
   };
 
   render() {
