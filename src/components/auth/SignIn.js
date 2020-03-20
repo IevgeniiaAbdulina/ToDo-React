@@ -20,7 +20,6 @@ class SignIn extends Component {
 
     this.state = {
       showModal: true,
-      userName: "",
       userEmail: "",
       userPassword: ""
     };
@@ -104,7 +103,11 @@ class SignIn extends Component {
         </ModalBody>
 
         <ModalFooter>
-          <NavLink to="/signup">SignUp</NavLink>
+          <Col>
+            <h6>
+              Don't have an account?<NavLink to="/signup"> Sign up</NavLink>
+            </h6>
+          </Col>
           <Button type="submit" color="primary" onClick={this.onFormSubmit}>
             Sign In
           </Button>

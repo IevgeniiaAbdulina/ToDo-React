@@ -55,7 +55,7 @@ class SignUp extends Component {
   render() {
     return (
       <Modal isOpen={this.state.showModal} toggle={this.toggleModal}>
-        <ModalHeader toggle={this.closeModal}>Sign In</ModalHeader>
+        <ModalHeader toggle={this.closeModal}>Sign Up</ModalHeader>
 
         <ModalBody>
           <Form className="form">
@@ -104,9 +104,13 @@ class SignUp extends Component {
         </ModalBody>
 
         <ModalFooter>
-          <NavLink to="/signin">SignIn</NavLink>
+          <Col>
+            <h6>
+              Already have an account?<NavLink to="/signin"> Sign In</NavLink>
+            </h6>
+          </Col>
           <Button type="submit" color="primary" onClick={this.onFormSubmit}>
-            Sign In
+            Sign Up
           </Button>
         </ModalFooter>
       </Modal>
