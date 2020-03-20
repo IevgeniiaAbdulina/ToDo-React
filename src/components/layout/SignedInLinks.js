@@ -1,16 +1,26 @@
 import React from "react";
-// import { NavLink } from "react-router-dom";
-import { NavItem, NavLink, Nav } from "reactstrap";
+import {
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Nav
+} from "reactstrap";
 
 const SignedInLinks = () => {
   return (
-    <Nav>
-      <NavItem>
-        Welcome...
-        <NavLink href="/" className="nav-link">
-          LogOut
-        </NavLink>
-      </NavItem>
+    <Nav className="ml-auto" navbar>
+      <UncontrolledDropdown nav inNavbar>
+        <DropdownToggle nav caret>
+          <span className="nav-links"> Welcome, Jane </span>
+        </DropdownToggle>
+
+        <DropdownMenu right>
+          <DropdownItem header>You are logged in</DropdownItem>
+          <DropdownItem divider />
+          <DropdownItem href="/">Log Out</DropdownItem>
+        </DropdownMenu>
+      </UncontrolledDropdown>
     </Nav>
   );
 };

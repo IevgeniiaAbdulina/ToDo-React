@@ -15,14 +15,16 @@ body {
   background-color: #ebebeb !important;
 }
 
-.navbar {
+.navbar-app {
   margin-top: 3.75em;
   color: #fff;
   background: #11064d;
   font-weight: 500;
 }
 
-.nav-link {
+.nav-links,
+.dropdown-toggle::after,
+.dropdown-toggle.nav-link {
   color: #fff;
   font-weight: 500;
 }

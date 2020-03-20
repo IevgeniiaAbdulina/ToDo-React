@@ -1,20 +1,18 @@
 import React from "react";
-// import { NavLink } from "react-router-dom";
 import { NavLink, NavItem, Nav } from "reactstrap";
 
 const SignedOutLinks = () => {
   return (
-    <Nav>
+    <Nav className="ml-auto" navbar>
       <NavItem>
-        {/* <NavLink to="/signup">SignUp</NavLink>
-      <NavLink to="/signin">SignIn</NavLink> */}
-        <NavLink href="/signup" className="nav-link">
-          SignUp
+        <NavLink href="/signup" style={{ color: "#fff" }}>
+          Sign Up
         </NavLink>
       </NavItem>
+
       <NavItem>
-        <NavLink href="/signin" className="nav-link">
-          SignIn
+        <NavLink href="/signin" style={{ color: "#fff" }}>
+          Sign In
         </NavLink>
       </NavItem>
     </Nav>
