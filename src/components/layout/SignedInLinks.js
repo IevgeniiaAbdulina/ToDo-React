@@ -1,11 +1,11 @@
 import React from "react";
-import { NavLink } from "reactstrap";
+import { NavLink } from "react-router-dom";
 
 const SignedInLinks = () => {
   return (
     <ul>
+      <h5>Welcome...</h5>
       <li>
-        <h5>Welcome...</h5>
         <NavLink to="/">LogOut</NavLink>
       </li>
     </ul>

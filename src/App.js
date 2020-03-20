@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Dashboard from "./components/dashboard/Dashboard";
 import Navbar from "./components/layout/Navbar";
 import ListDetails from "./components/lists/ListDetails";
+import TaskDetails from "./components/tasks/TaskDetails";
 import SignUp from "./components/auth/SignUp";
 import SignIn from "./components/auth/SignIn";
 import CreateList from "./components/lists/CreateList";
@@ -33,6 +34,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Dashboard} />
             <Route path="/list/:id" component={ListDetails} />
+            <Route path="/task/:id" component={TaskDetails} />
             <Route path="/signup" component={SignUp} />
             <Route path="/signin" component={SignIn} />
             <Route path="/create/list" component={CreateList} />

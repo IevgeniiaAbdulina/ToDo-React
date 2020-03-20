@@ -1,4 +1,8 @@
-import { GET_LISTS } from "./types";
+import {
+  GET_LISTS
+  // NEW_LIST,
+  // DELETE_LIST
+} from "./types";
 
 import axios from "axios";
 const axiosInstance = axios.create({
