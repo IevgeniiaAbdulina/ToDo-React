@@ -14,3 +14,15 @@ body {
   background-position: top;
   background-color: #ebebeb !important;
 }
+
+.navbar {
+  margin-top: 3.75em;
+  color: #fff;
+  background: #11064d;
+  font-weight: 500;
+}
+
+.nav-link {
+  color: #fff;
+  font-weight: 500;
+}

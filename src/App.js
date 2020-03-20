@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 // NEW REDUX PROJECT
 import Dashboard from "./components/dashboard/Dashboard";
-import Navbar from "./components/layout/Navbar";
+import NavbarApp from "./components/layout/NavbarApp";
 import ListDetails from "./components/lists/ListDetails";
 import TaskDetails from "./components/tasks/TaskDetails";
 import SignUp from "./components/auth/SignUp";
@@ -30,7 +30,7 @@ class App extends React.Component {
           {/* <Axios onLoginRequested={this.onLoginRequested} /> */}
           {/* <Header onLoginRequested={this.onLoginRequested} /> */}
 
-          <Navbar />
+          <NavbarApp />
           <Switch>
             <Route exact path="/" component={Dashboard} />
             <Route path="/list/:id" component={ListDetails} />

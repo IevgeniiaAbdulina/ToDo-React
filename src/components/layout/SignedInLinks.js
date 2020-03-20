@@ -1,14 +1,17 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
+import { NavItem, NavLink, Nav } from "reactstrap";
 
 const SignedInLinks = () => {
   return (
-    <ul>
-      <h5>Welcome...</h5>
-      <li>
-        <NavLink to="/">LogOut</NavLink>
-      </li>
-    </ul>
+    <Nav>
+      <NavItem>
+        Welcome...
+        <NavLink href="/" className="nav-link">
+          LogOut
+        </NavLink>
+      </NavItem>
+    </Nav>
   );
 };
 
