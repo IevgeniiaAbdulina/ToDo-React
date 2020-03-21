@@ -57,3 +57,19 @@ a.nav-link:hover {
   color: #fff;
   font-weight: 700;
 }
+
+/* CARD Create List */
+.create-list-card.card {
+  padding: 5px 5px;
+}
+
+.button-container.col {
+  display: flex;
+  align-items: center;
+}
+
+.ic-close-form {
+  cursor: pointer;
+  margin: 0 20px;
+  color: rgba(0, 0, 0, 0.6);
+}
