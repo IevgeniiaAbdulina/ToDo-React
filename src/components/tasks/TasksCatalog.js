@@ -7,8 +7,6 @@ const TasksCatalog = () => {
     <div>
       <h5>Tasks catalog</h5>
       <TaskSummary />
-      <TaskSummary />
-      <TaskSummary />
     </div>
   );
 };

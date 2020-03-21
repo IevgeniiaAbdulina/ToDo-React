@@ -7,9 +7,6 @@ import CreateTaskLink from "../tasks/CreateTaskLink";
 const ListsCatalog = () => {
   return (
     <div>
-      <h5>List Catalog</h5>
-      <ListSummary />
-      <ListSummary />
       <ListSummary />
 
       <CreateTaskLink />

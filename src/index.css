@@ -28,3 +28,32 @@ body {
   color: #fff;
   font-weight: 500;
 }
+
+.dashboard-header {
+  top: 3.75em;
+  color: #fff;
+  position: relative;
+}
+
+.dashboard-header-title.row {
+  align-items: center;
+}
+
+button.create-list-button.btn.btn-primary.btn-sm {
+  margin: 0 16px;
+  color: #fff;
+  font-weight: 700;
+  background-color: #06d8d8;
+  border-color: #06d8d8;
+}
+
+button.create-list-button.btn.btn-primary.btn-sm:hover {
+  background-color: #06caca;
+  border-color: #06caca;
+}
+
+a.nav-link,
+a.nav-link:hover {
+  color: #fff;
+  font-weight: 700;
+}
