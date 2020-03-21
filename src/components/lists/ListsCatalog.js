@@ -1,17 +1,15 @@
 import React from "react";
 
 import ListSummary from "./ListSummary";
-import TasksCatalog from "../tasks/TasksCatalog";
-import CreateTaskLink from "../tasks/CreateTaskLink";
+import { CardColumns } from "reactstrap";
 
 const ListsCatalog = () => {
   return (
     <div>
-      <ListSummary />
-
-      <CreateTaskLink />
-
-      <TasksCatalog />
+      <CardColumns>
+        {/* lists.map() */}
+        <ListSummary />
+      </CardColumns>
     </div>
   );
 };

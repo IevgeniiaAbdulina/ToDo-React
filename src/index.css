@@ -73,3 +73,72 @@ a.nav-link:hover {
   margin: 0 20px;
   color: rgba(0, 0, 0, 0.6);
 }
+
+/* CARD List Style */
+.card-list {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: auto;
+
+  background: #ffffff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2), 0px 2px 1px rgba(0, 0, 0, 0.12),
+    0px 1px 1px rgba(0, 0, 0, 0.14);
+  border-radius: 4px;
+}
+
+.card-list-title {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  padding: 0 20px;
+  background: #f9f9f9;
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 4px 4px 0px 0px;
+
+  align-items: center;
+  font-size: normal;
+  font-weight: 500;
+  font-size: 1.25em;
+  line-height: 1.5em;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.list-badge.badge.badge-secondary {
+  background-color: #fbced9;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.75em;
+  margin-left: 0.625em;
+}
+
+.card-body-style {
+  position: relative;
+  margin-top: 60px;
+  padding: 10px 5px;
+}
+
+/* TASKS IN LISt Style */
+.add-task-button.btn.btn-secondary {
+  position: relative;
+  width: 100%;
+  height: 48px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+.add-task-button-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  line-height: 1.25em;
+  letter-spacing: 0.015625em;
+  color: rgba(0, 0, 0, 0.6);
+}

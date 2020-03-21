@@ -40,7 +40,7 @@ class CreateList extends Component {
               <Button size="sm" color="primary" onClick={this.onFormSubmit}>
                 Save
               </Button>
-              <i className="material-icons ic-close-form">close</i>
+              <Button close className="ic-close-form" />
             </Col>
           </Card>
         </Col>
