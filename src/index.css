@@ -15,6 +15,15 @@ body {
   background-color: #ebebeb !important;
 }
 
+@media screen and (max-width: 600px) {
+  body {
+    background: url(./img/bg-img.svg) no-repeat;
+    background-size: auto 50%;
+    background-position: top;
+  }
+}
+
+/* NAVBAR Style */
 .navbar-app {
   margin-top: 3.75em;
   color: #fff;
@@ -29,8 +38,9 @@ body {
   font-weight: 500;
 }
 
+/* DASHBOARD HEADER Style */
 .dashboard-header {
-  top: 3.75em;
+  margin: 2.5em 0;
   color: #fff;
   position: relative;
 }
@@ -39,7 +49,7 @@ body {
   align-items: center;
 }
 
-button.create-list-button.btn.btn-primary.btn-sm {
+.create-list-button.btn.btn-primary.btn-sm {
   margin: 0 16px;
   color: #fff;
   font-weight: 700;
@@ -47,13 +57,13 @@ button.create-list-button.btn.btn-primary.btn-sm {
   border-color: #06d8d8;
 }
 
-button.create-list-button.btn.btn-primary.btn-sm:hover {
+.create-list-button.btn.btn-primary.btn-sm:hover {
   background-color: #06caca;
   border-color: #06caca;
 }
 
-a.nav-link,
-a.nav-link:hover {
+.nav-link,
+.nav-link:hover {
   color: #fff;
   font-weight: 700;
 }
@@ -76,19 +86,7 @@ a.nav-link:hover {
   border: none;
 }
 
-/* CARD List Style */
-/* .card-list {
-  position: relative;
-  display: flex;
-  width: 100%;
-  height: auto;
-
-  background: #ffffff;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2), 0px 2px 1px rgba(0, 0, 0, 0.12),
-    0px 1px 1px rgba(0, 0, 0, 0.14);
-  border-radius: 4px;
-} */
-
+/* CARD LIST Style */
 .card-list-title {
   position: absolute;
   display: flex;
@@ -128,7 +126,7 @@ a.nav-link:hover {
   padding: 10px 5px;
 }
 
-/* TASKS IN LISt Style */
+/* ADD TASK BUTTON Style */
 .add-task-button {
   position: relative;
   display: flex;
@@ -165,4 +163,36 @@ i.material-icons.ic-add-task {
   line-height: 1.25em;
   letter-spacing: 0.015625em;
   color: rgba(0, 0, 0, 0.87);
+}
+
+/* TASKS SUMMARY Style  */
+.task-card {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: auto;
+  padding: 5px 15px;
+  margin: 10px 0;
+
+  background-color: #fff;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15), inset 6px 0px 0px #fbced9;
+  border-radius: 4px;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.task-content {
+  display: flex;
+  align-items: center;
+}
+
+.task-title {
+  margin-left: 10px;
 }

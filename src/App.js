@@ -16,8 +16,6 @@ import CreateTask from "./components/tasks/CreateTask";
 // import Home from "./components/Home";
 // import ListsShow from "./components/ListsShow";
 // import LoginPage from "./components/LoginPage";
-import ListItem from "./components/lists/ListItem";
-import { Container } from "reactstrap";
 
 class App extends React.Component {
   // onLoginRequested() {
@@ -47,9 +45,6 @@ class App extends React.Component {
             {/* <Route path={"/user"} component={ListsShow} /> */}
             <Route path="*" component={() => "404 PAGE NOT FOUND"} />
           </Switch>
-          <Container>
-            <ListItem />
-          </Container>
         </div>
       </BrowserRouter>
     );
