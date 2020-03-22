@@ -86,7 +86,7 @@ class ListItem extends React.Component {
   render() {
     return (
       <div>
-        <Card style={formCardStyle}>
+        {/* <Card style={formCardStyle}>
           <FormGroup style={formStyle}>
             <Input
               type="textarea"
@@ -109,7 +109,7 @@ class ListItem extends React.Component {
         </Card>
         <Alert color="info" isOpen={this.state.visibleAlert}>
           You has reached the limit - max 3 lists!
-        </Alert>
+        </Alert> */}
 
         <Card>
           <div className="card-list" style={cardStyle}>

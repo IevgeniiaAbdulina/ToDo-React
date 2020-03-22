@@ -36,12 +36,20 @@ class CreateList extends Component {
                 onChange={this.handleChange}
               />
             </FormGroup>
-            <Col className="button-container">
+            <div className="button-container">
+              <Button
+                size="sm"
+                outline
+                color="secondary"
+                className="ic-close-form"
+              >
+                Cancel
+              </Button>
               <Button size="sm" color="primary" onClick={this.onFormSubmit}>
                 Save
               </Button>
-              <Button close className="ic-close-form" />
-            </Col>
+              {/* <Button close className="ic-close-form" /> */}
+            </div>
           </Card>
         </Col>
       </div>
