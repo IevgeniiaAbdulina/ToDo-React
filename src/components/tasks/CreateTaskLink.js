@@ -1,18 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "reactstrap";
+import { NavLink } from "reactstrap";
 
 const CreateTaskLink = () => {
   return (
     <div>
-      {/* <div>Create new TASK here > </div>
-      <Link to="/create/task">Create task</Link> */}
-      <Button className="add-task-button">
-        <div className="add-task-button-text">
-          <i className="material-icons">add</i>
-          <Link to="/create/task"> Add a new task</Link>
-        </div>
-      </Button>
+      <div className="add-task-button">
+        <i className="material-icons ic-add-task">add</i>
+        <NavLink href="/create/task" className="add-task-button-text">
+          {" "}
+          Add a new task
+        </NavLink>
+      </div>
     </div>
   );
 };
