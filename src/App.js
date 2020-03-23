@@ -8,8 +8,8 @@ import ListDetails from "./components/lists/ListDetails";
 import TaskDetails from "./components/tasks/TaskDetails";
 import SignUp from "./components/auth/SignUp";
 import SignIn from "./components/auth/SignIn";
-import CreateList from "./components/lists/CreateList";
-import CreateTask from "./components/tasks/CreateTask";
+// import CreateList from "./components/lists/CreateList";
+// import CreateTask from "./components/tasks/CreateTask";
 
 // import Axios from "./Axios";
 // import Header from "./components/Header";
@@ -37,8 +37,8 @@ class App extends React.Component {
             <Route path="/task/:id" component={TaskDetails} />
             <Route path="/signup" component={SignUp} />
             <Route path="/signin" component={SignIn} />
-            <Route path="/create/list" component={CreateList} />
-            <Route path="/create/task" component={CreateTask} />
+            {/* <Route path="/create/list" component={CreateList} /> */}
+            {/* <Route path="/create/task" component={CreateTask} /> */}
 
             {/* <Route path={"/"} component={Home} /> */}
             {/* <Route path={"/login"} component={LoginPage} /> */}

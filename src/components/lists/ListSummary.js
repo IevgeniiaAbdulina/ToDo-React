@@ -5,7 +5,6 @@ import {
   Badge,
   Dropdown,
   CardBody,
-  // Button,
   Container,
   DropdownToggle,
   DropdownMenu,
@@ -14,10 +13,20 @@ import {
 
 import TasksCatalog from "../tasks/TasksCatalog";
 import CreateTaskLink from "../tasks/CreateTaskLink";
+import CreateTask from "../tasks/CreateTask";
 
 const ListSummary = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+
+  // editList();
+  // deleteList();
+  // getTasks();
+  // setTaskChecked();
+  // setTaskUnchecked();
+
+  // Show / hide <CreateTask />
+  // TasksCatalog is show if tasks >= 1 : null
 
   return (
     <div>
@@ -25,9 +34,10 @@ const ListSummary = () => {
         <Card>
           <CardTitle className="card-list-title">
             <div>
+              {/* {this.props.listName} */}
               List title{" "}
               <Badge pill className="list-badge">
-                4
+                {/* {this.props.tasks.length} */}4
               </Badge>
             </div>
 
@@ -41,18 +51,28 @@ const ListSummary = () => {
                 <DropdownItem divider />
 
                 <DropdownItem>Rename list</DropdownItem>
+                {/* onClick={editList} */}
                 <DropdownItem>Delete list</DropdownItem>
+                {/* onClick={deleteList} */}
                 <DropdownItem divider />
 
                 <DropdownItem>Show all tasks</DropdownItem>
+                {/* onClick={getTasks} */}
                 <DropdownItem>Show all checked tasks</DropdownItem>
+                {/* onClick={setTaskChecked} */}
                 <DropdownItem>Show all unchecked tasks</DropdownItem>
+                {/* onClick={setTaskUnchecked} */}
               </DropdownMenu>
             </Dropdown>
           </CardTitle>
 
           <CardBody className="card-body-style">
             <CreateTaskLink />
+
+            {/* Show / hide here */}
+            <CreateTask />
+
+            {/* tasks >= 1 ? show : null */}
             <TasksCatalog />
           </CardBody>
         </Card>

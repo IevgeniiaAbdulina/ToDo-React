@@ -82,8 +82,8 @@ body {
 .ic-close-form.btn {
   cursor: pointer;
   margin: 0 16px;
-  color: rgba(0, 0, 0, 0.6);
-  border: none;
+  /* color: rgba(0, 0, 0, 0.6); */
+  /* border: none; */
 }
 
 /* CARD LIST Style */
@@ -144,7 +144,8 @@ i.material-icons.ic-add-task {
   cursor: pointer;
 }
 
-.add-task-button-text.nav-link {
+.add-task-button-text {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -156,7 +157,7 @@ i.material-icons.ic-add-task {
   color: rgba(0, 0, 0, 0.6);
 }
 
-.add-task-button-text.nav-link:hover {
+.add-task-button-text:hover {
   font-style: normal;
   font-weight: normal;
   font-size: 1em;
@@ -195,4 +196,10 @@ i.material-icons.ic-add-task {
 
 .task-title {
   margin-left: 10px;
+}
+
+/* CREATE TASK Field Style */
+.create-task-card {
+  padding: 5px 5px;
+  margin-top: 0.75rem;
 }

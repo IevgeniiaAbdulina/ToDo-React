@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Card, FormGroup, Input, Col, Button } from "reactstrap";
 
+// import { createList } from "../../actions/listActions";
+// import { connect } from "react-redux";
+
 class CreateList extends Component {
   constructor(props) {
     super(props);
@@ -20,12 +23,17 @@ class CreateList extends Component {
     console.log("LIST FORM SUBMIT");
     e.preventDefault();
     console.log(this.state);
+
+    this.props.createList(this.state.listName);
+    this.setState({
+      listName: ""
+    });
   };
 
   render() {
     return (
       <div>
-        <Col md={4}>
+        <Col>
           <Card className="create-list-card">
             <FormGroup className="create-list-form">
               <Input
@@ -48,7 +56,6 @@ class CreateList extends Component {
               <Button size="sm" color="primary" onClick={this.onFormSubmit}>
                 Save
               </Button>
-              {/* <Button close className="ic-close-form" /> */}
             </div>
           </Card>
         </Col>
@@ -57,4 +64,10 @@ class CreateList extends Component {
   }
 }
 
-export default CreateList;
+// CreateList.propTypes = {
+//   createList: PropTypes.func.isRequired
+// };
+
+export default // connect(null, { createList })(
+CreateList;
+// );

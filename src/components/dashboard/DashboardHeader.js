@@ -15,7 +15,7 @@ const DashboardHeader = () => {
           </Col>
           <Col md={{ span: 3, offset: 3 }}>
             <Button size="sm" color="primary" className="create-list-button">
-              <NavLink href="/create/list">Add List</NavLink>
+              <NavLink href="/">Add List</NavLink>
             </Button>
           </Col>
         </Row>
