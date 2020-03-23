@@ -1,18 +1,20 @@
 import React from "react";
+import { CardColumns } from "reactstrap";
 
 import ListSummary from "./ListSummary";
-import { CardColumns } from "reactstrap";
-import CreateList from "./CreateList";
+// import CreateList from "./CreateList";
 
-const ListsCatalog = () => {
+const ListsCatalog = ({ lists }) => {
   return (
     <div>
       <CardColumns>
         {/* Show / hide */}
-        <CreateList />
+        {/* <CreateList /> */}
 
-        {/* lists.map() */}
-        <ListSummary />
+        {lists &&
+          lists.map(list => {
+            return <ListSummary list={list} key={list._id} />;
+          })}
       </CardColumns>
     </div>
   );

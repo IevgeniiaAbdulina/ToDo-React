@@ -6,8 +6,12 @@ import {
 
 import axios from "axios";
 const axiosInstance = axios.create({
-  baseURL: "https://cc19todoapp.herokuapp.com"
+  baseURL: "https://cc19todoapp.herokuapp.com",
   // headers: { "x-auth-token": "token" }
+  headers: {
+    "x-auth-token":
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTJmMTRmZjcyZWY5ZjAwMTcyNDZkMTkiLCJsb2dpbiI6IkphbmUiLCJlbWFpbCI6InNvbWVAY29tLmNvbSIsImlhdCI6MTU4MzE4MjEyNH0.wdVf9ZhmMGoCAPFWfQHi6STTWLZ0NKR4cwdmx_Mj2iM"
+  }
 });
 
 export const getLists = () => dispatch => {

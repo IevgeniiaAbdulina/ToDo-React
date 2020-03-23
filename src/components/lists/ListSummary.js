@@ -15,9 +15,11 @@ import TasksCatalog from "../tasks/TasksCatalog";
 import CreateTaskLink from "../tasks/CreateTaskLink";
 import CreateTask from "../tasks/CreateTask";
 
-const ListSummary = () => {
+const ListSummary = ({ list }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+
+  // console.log("props in List Summary:" );
 
   // editList();
   // deleteList();
@@ -34,10 +36,9 @@ const ListSummary = () => {
         <Card>
           <CardTitle className="card-list-title">
             <div>
-              {/* {this.props.listName} */}
-              List title{" "}
+              {list.name}
               <Badge pill className="list-badge">
-                {/* {this.props.tasks.length} */}4
+                {/* {list.content.length} */}
               </Badge>
             </div>
 
