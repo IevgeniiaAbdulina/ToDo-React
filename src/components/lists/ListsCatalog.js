@@ -4,7 +4,7 @@ import { CardColumns } from "reactstrap";
 import ListSummary from "./ListSummary";
 // import CreateList from "./CreateList";
 
-const ListsCatalog = ({ lists }) => {
+const ListsCatalog = ({ lists, tasks }) => {
   return (
     <div>
       <CardColumns>
@@ -13,7 +13,7 @@ const ListsCatalog = ({ lists }) => {
 
         {lists &&
           lists.map(list => {
-            return <ListSummary list={list} key={list._id} />;
+            return <ListSummary key={list._id} list={list} tasks={tasks} />;
           })}
       </CardColumns>
     </div>

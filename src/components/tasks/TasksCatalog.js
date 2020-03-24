@@ -2,13 +2,13 @@ import React from "react";
 
 import TaskSummary from "./TaskSummary";
 
-const TasksCatalog = () => {
+const TasksCatalog = ({ tasks }) => {
   return (
     <div>
-      {/* tasks.map() */}
-      <TaskSummary />
-      <TaskSummary />
-      <TaskSummary />
+      {tasks &&
+        tasks.map(task => {
+          return <TaskSummary task={task} key={task._id} />;
+        })}
     </div>
   );
 };

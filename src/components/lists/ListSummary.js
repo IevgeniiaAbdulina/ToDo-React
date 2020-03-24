@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import {
   Card,
   CardTitle,
@@ -14,12 +15,19 @@ import {
 import TasksCatalog from "../tasks/TasksCatalog";
 import CreateTaskLink from "../tasks/CreateTaskLink";
 import CreateTask from "../tasks/CreateTask";
+// import { connect } from "react-redux";
 
-const ListSummary = ({ list }) => {
+const ListSummary = ({ list, tasks }) => {
+  // const { task } = this.props.tasks;
+  // console.log(task);
+  // useEffect(() => {
+  //   this.props.getTasks();
+  // });
+
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  // console.log("props in List Summary:" );
+  // const { tasks } = this.props;
 
   // editList();
   // deleteList();
@@ -28,7 +36,6 @@ const ListSummary = ({ list }) => {
   // setTaskUnchecked();
 
   // Show / hide <CreateTask />
-  // TasksCatalog is show if tasks >= 1 : null
 
   return (
     <div>
@@ -73,13 +80,18 @@ const ListSummary = ({ list }) => {
             {/* Show / hide here */}
             <CreateTask />
 
-            {/* tasks >= 1 ? show : null */}
-            <TasksCatalog />
+            <TasksCatalog tasks={tasks} />
           </CardBody>
         </Card>
       </Container>
     </div>
   );
 };
+
+ListSummary.propTypes = {};
+
+// const mapStateToProps = state => ({
+//   tasks:
+// })
 
 export default ListSummary;

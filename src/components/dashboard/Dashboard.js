@@ -5,20 +5,21 @@ import { connect } from "react-redux";
 import DashboardHeader from "./DashboardHeader";
 import ListsCatalog from "../lists/ListsCatalog";
 import { getLists } from "../../actions/listActions";
+import { getTasks } from "../../actions/taskActions";
 
 class Dashboard extends Component {
   componentWillMount() {
     this.props.getLists();
+    this.props.getTasks();
   }
 
   render() {
-    console.log("THIS PROPS in DASHBOARD:", this.props);
-
     const { lists } = this.props;
+    const { tasks } = this.props;
     return (
       <div>
         <DashboardHeader />
-        <ListsCatalog lists={lists} />
+        <ListsCatalog lists={lists} tasks={tasks} />
       </div>
     );
   }
@@ -26,13 +27,16 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   getLists: PropTypes.func.isRequired,
-  lists: PropTypes.array.isRequired
+  getTasks: PropTypes.func.isRequired,
+  lists: PropTypes.array.isRequired,
+  tasks: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => {
   return {
-    lists: state.listsState.lists
+    lists: state.listsState.lists,
+    tasks: state.tasksState.tasks
   };
 };
 
-export default connect(mapStateToProps, { getLists })(Dashboard);
+export default connect(mapStateToProps, { getLists, getTasks })(Dashboard);
