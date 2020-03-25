@@ -1,5 +1,4 @@
-// import { GET_TASKS, NEW_TASK, DELETE_TASK } from "./types";
-import { GET_TASKS } from "./types";
+import { GET_TASKS, SHOW_ACTIVE_TASKS } from "./types";
 
 import axios from "axios";
 const axiosInstance = axios.create({
@@ -12,7 +11,9 @@ const axiosInstance = axios.create({
 
 export const getTasks = () => dispatch => {
   axiosInstance
-    .get("/api/tasks")
+    .get("/api/tasks", {
+      listID: "5e7a53719b60e50017478d12"
+    })
     .then(tasks => {
       console.log("GET ALL TASKS", tasks);
       dispatch({
@@ -24,3 +25,15 @@ export const getTasks = () => dispatch => {
       console.log(err);
     });
 };
+
+export const visibilityFilter = tasks => dispatch => {
+  console.log("ACTIVE TASKS: ", tasks);
+  dispatch({
+    type: SHOW_ACTIVE_TASKS,
+    payload: tasks,
+    checked: false
+  });
+};
+// SHOW_COMPLETED_TASKS
+// TOGGLE_TASK
+// ADD_TASK

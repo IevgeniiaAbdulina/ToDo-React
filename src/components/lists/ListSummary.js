@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react";
+// import PropTypes from "prop-types";
 import {
   Card,
   CardTitle,
@@ -18,16 +18,10 @@ import CreateTask from "../tasks/CreateTask";
 // import { connect } from "react-redux";
 
 const ListSummary = ({ list, tasks }) => {
-  // const { task } = this.props.tasks;
-  // console.log(task);
-  // useEffect(() => {
-  //   this.props.getTasks();
-  // });
-
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  // const { tasks } = this.props;
+  const currentTasks = tasks.filter(task => task._listID === list._id);
 
   // editList();
   // deleteList();
@@ -80,7 +74,7 @@ const ListSummary = ({ list, tasks }) => {
             {/* Show / hide here */}
             <CreateTask />
 
-            <TasksCatalog tasks={tasks} />
+            <TasksCatalog tasks={currentTasks} />
           </CardBody>
         </Card>
       </Container>
