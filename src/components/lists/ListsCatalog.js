@@ -1,20 +1,31 @@
 import React from "react";
-import { CardColumns } from "reactstrap";
+import { CardColumns, Col } from "reactstrap";
 
 import ListSummary from "./ListSummary";
-// import CreateList from "./CreateList";
+import CreateList from "./CreateList";
 
 const ListsCatalog = ({ lists, tasks }) => {
+  console.log("LISTS here: ", lists);
+  const createListForm = lists.length < 3 ? <CreateList /> : null;
+  const createListsCatalog = lists.length ? (
+    lists &&
+    lists.map(list => {
+      return <ListSummary key={list._id} list={list} tasks={tasks} />;
+    })
+  ) : (
+    <Col style={{ color: "#fff" }}>No lists yet...</Col>
+  );
+
   return (
     <div>
       <CardColumns>
-        {/* Show / hide */}
-        {/* <CreateList /> */}
+        {createListForm}
+        {createListsCatalog}
 
-        {lists &&
+        {/* {lists &&
           lists.map(list => {
             return <ListSummary key={list._id} list={list} tasks={tasks} />;
-          })}
+          })} */}
       </CardColumns>
     </div>
   );

@@ -1,4 +1,4 @@
-import { GET_LISTS } from "../actions/types";
+import { GET_LISTS, NEW_LIST } from "../actions/types";
 
 const initState = {
   lists: [],
@@ -12,6 +12,12 @@ const listReducer = (state = initState, action) => {
       return {
         ...state,
         lists: action.payload.data
+      };
+
+    case NEW_LIST:
+      return {
+        ...state,
+        list: action.payload
       };
     default:
       return state;

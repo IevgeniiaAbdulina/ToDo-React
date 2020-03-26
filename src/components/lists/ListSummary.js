@@ -39,7 +39,7 @@ const ListSummary = ({ list, tasks }) => {
             <div>
               {list.name}
               <Badge pill className="list-badge">
-                {/* {list.content.length} */}
+                {currentTasks.length}
               </Badge>
             </div>
 

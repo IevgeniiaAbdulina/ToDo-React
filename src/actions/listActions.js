@@ -1,8 +1,4 @@
-import {
-  GET_LISTS,
-  NEW_LIST
-  // DELETE_LIST
-} from "./types";
+import { GET_LISTS, NEW_LIST } from "./types";
 
 import axios from "axios";
 const axiosInstance = axios.create({
@@ -21,8 +17,6 @@ export const getLists = () => dispatch => {
   axiosInstance
     .get("/api/lists")
     .then(lists => {
-      // const token = lists.config.headers;
-      // console.log("GET LISTS", token["x-auth-token"]);
       dispatch({
         type: GET_LISTS,
         payload: lists
@@ -33,17 +27,20 @@ export const getLists = () => dispatch => {
     });
 };
 
-export const createList = listData => dispatch => {
+export const createList = (listData, callback) => dispatch => {
   axiosInstance
     .post("/api/lists", {
-      name: listData.listName
+      name: listData
     })
-    .them(list => {
-      console.log("CREATE NEW LIST", list);
+    .then(list => {
+      console.log("CREATE NEW LIST");
       dispatch({
         type: NEW_LIST,
         payload: list
       });
+      if (callback !== undefined) {
+        callback();
+      }
     })
     .catch(err => {
       console.log(err);

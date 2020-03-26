@@ -49,7 +49,7 @@ body {
   align-items: center;
 }
 
-.create-list-button.btn.btn-primary.btn-sm {
+.create-list-button.btn.btn-primary {
   margin: 0 16px;
   color: #fff;
   font-weight: 700;
