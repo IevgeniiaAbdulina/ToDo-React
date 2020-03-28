@@ -5,7 +5,6 @@ import ListSummary from "./ListSummary";
 import CreateList from "./CreateList";
 
 const ListsCatalog = ({ lists, tasks }) => {
-  console.log("LISTS here: ", lists);
   const createListForm = lists.length < 3 ? <CreateList /> : null;
   const createListsCatalog = lists.length ? (
     lists &&
@@ -21,11 +20,6 @@ const ListsCatalog = ({ lists, tasks }) => {
       <CardColumns>
         {createListForm}
         {createListsCatalog}
-
-        {/* {lists &&
-          lists.map(list => {
-            return <ListSummary key={list._id} list={list} tasks={tasks} />;
-          })} */}
       </CardColumns>
     </div>
   );

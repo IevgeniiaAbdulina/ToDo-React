@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import PropTypes from "prop-types";
 import {
   Card,
   CardTitle,
@@ -14,12 +15,15 @@ import {
 import TasksCatalog from "../tasks/TasksCatalog";
 import CreateTaskLink from "../tasks/CreateTaskLink";
 import CreateTask from "../tasks/CreateTask";
+import { deleteList } from "../../actions/listActions";
+import { connect } from "react-redux";
 
 const ListSummary = ({ list, tasks }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
   const currentTasks = tasks.filter(task => task._listID === list._id);
+  const listID = list._id;
 
   return (
     <div>
@@ -44,8 +48,9 @@ const ListSummary = ({ list, tasks }) => {
 
                 <DropdownItem>Rename list</DropdownItem>
                 {/* onClick={editList} */}
-                <DropdownItem>Delete list</DropdownItem>
-                {/* onClick={deleteList} */}
+                <DropdownItem onClick={() => list.deleteList(listID)}>
+                  Delete list
+                </DropdownItem>
                 <DropdownItem divider />
 
                 <DropdownItem>Show all tasks</DropdownItem>
@@ -60,7 +65,6 @@ const ListSummary = ({ list, tasks }) => {
 
           <CardBody className="card-body-style">
             <CreateTaskLink />
-
             {/* Show / hide here */}
             <CreateTask />
 
@@ -72,4 +76,12 @@ const ListSummary = ({ list, tasks }) => {
   );
 };
 
-export default ListSummary;
+const mapDispatchToProps = dispatch => {
+  return {
+    isDeleteList: listID => {
+      dispatch(deleteList(listID));
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(ListSummary);

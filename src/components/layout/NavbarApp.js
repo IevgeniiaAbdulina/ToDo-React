@@ -3,8 +3,11 @@ import { Navbar, NavbarToggler, NavbarBrand, Collapse } from "reactstrap";
 
 import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
+import { connect } from "react-redux";
 
-const NavbarApp = () => {
+const NavbarApp = props => {
+  const { auth } = props;
+  console.log(auth);
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -23,4 +26,10 @@ const NavbarApp = () => {
   );
 };
 
-export default NavbarApp;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth.isSignedIn
+  };
+};
+
+export default connect(mapStateToProps)(NavbarApp);

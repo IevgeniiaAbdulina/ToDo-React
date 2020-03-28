@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { signIn } from "../../actions/authActions";
 import { NavLink } from "react-router-dom";
 import {
   Modal,
@@ -32,9 +34,7 @@ class SignIn extends Component {
   };
 
   closeModal = e => {
-    console.log("CLOSE MODAl");
     e.preventDefault();
-
     this.toggleModal();
     this.setState({});
   };
@@ -46,12 +46,12 @@ class SignIn extends Component {
   };
 
   onFormSubmit = e => {
-    console.log("SUBMIT FORM");
     e.preventDefault();
-    console.log("This state: ", this.state);
+    this.props.signIn(this.state);
   };
 
   render() {
+    const { authError } = this.props;
     return (
       <Modal isOpen={this.state.showModal} toggle={this.toggleModal}>
         <ModalHeader toggle={this.closeModal}>Sign In</ModalHeader>
@@ -111,10 +111,23 @@ class SignIn extends Component {
           <Button type="submit" color="primary" onClick={this.onFormSubmit}>
             Sign In
           </Button>
+          <div>{authError ? <p>{authError}</p> : null}</div>
         </ModalFooter>
       </Modal>
     );
   }
 }
 
-export default SignIn;
+const mapStateToProps = state => {
+  return {
+    authError: state.auth.authError
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    signIn: credentials => dispatch(signIn(credentials))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { signOut } from "../../actions/authActions";
 import {
   UncontrolledDropdown,
   DropdownToggle,
@@ -7,7 +9,7 @@ import {
   Nav
 } from "reactstrap";
 
-const SignedInLinks = () => {
+const SignedInLinks = props => {
   return (
     <Nav className="ml-auto" navbar>
       <UncontrolledDropdown nav inNavbar>
@@ -18,11 +20,17 @@ const SignedInLinks = () => {
         <DropdownMenu right>
           <DropdownItem header>You are logged in</DropdownItem>
           <DropdownItem divider />
-          <DropdownItem href="/">Log Out</DropdownItem>
+          <DropdownItem onClick={props.signOut}>Log Out</DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
     </Nav>
   );
 };
 
-export default SignedInLinks;
+const mapDispatchToProps = dispatch => {
+  return {
+    signOut: () => dispatch(signOut())
+  };
+};
+
+export default connect(null, mapDispatchToProps)(SignedInLinks);
