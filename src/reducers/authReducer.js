@@ -1,4 +1,9 @@
-import { SIGN_IN, SIGN_IN_ERROR, SIGN_OUT } from "../actions/types";
+import {
+  SIGN_IN,
+  SIGN_IN_ERROR,
+  SIGN_OUT,
+  IS_SIGNED_IN
+} from "../actions/types";
 
 const initState = {
   authError: null,
@@ -21,7 +26,13 @@ const authReducer = (state = initState, action) => {
     case SIGN_OUT:
       return {
         ...state,
-        isSignedIn: "You are not signed in!"
+        isSignedIn: ""
+      };
+
+    case IS_SIGNED_IN:
+      return {
+        ...state,
+        isSignedIn: action.payload
       };
 
     default:

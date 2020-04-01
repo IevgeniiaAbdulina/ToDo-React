@@ -5,17 +5,20 @@ import { Redirect } from "react-router-dom";
 
 import DashboardHeader from "./DashboardHeader";
 import ListsCatalog from "../lists/ListsCatalog";
+import { setSignedIn } from "../../actions/authActions";
 import { getLists } from "../../actions/listActions";
 import { getTasks } from "../../actions/taskActions";
 
 class Dashboard extends Component {
   componentWillMount() {
+    this.props.setSignedIn();
     this.props.getLists();
     this.props.getTasks();
   }
 
   render() {
     const { lists, tasks, auth } = this.props;
+    // const token = localStorage.getItem("token");
     if (!auth) return <Redirect to="/signin" />;
 
     return (
@@ -28,6 +31,7 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
+  setSignedIn: PropTypes.func.isRequired,
   getLists: PropTypes.func.isRequired,
   getTasks: PropTypes.func.isRequired,
   lists: PropTypes.array.isRequired,
@@ -43,4 +47,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getLists, getTasks })(Dashboard);
+export default connect(mapStateToProps, { setSignedIn, getLists, getTasks })(
+  Dashboard
+);

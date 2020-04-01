@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_IN_ERROR, SIGN_OUT } from "./types";
+import { SIGN_IN, SIGN_IN_ERROR, SIGN_OUT, IS_SIGNED_IN } from "./types";
 
 import axios from "axios";
 const axiosInstance = axios.create({
@@ -32,5 +32,13 @@ export const signOut = () => {
   localStorage.removeItem("token");
   return {
     type: SIGN_OUT
+  };
+};
+
+export const setSignedIn = () => {
+  const token = localStorage.getItem("token");
+  return {
+    type: IS_SIGNED_IN,
+    payload: token
   };
 };

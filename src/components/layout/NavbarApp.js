@@ -10,6 +10,7 @@ const NavbarApp = props => {
   const toggle = () => setIsOpen(!isOpen);
 
   const { auth } = props;
+  // const token = localStorage.getItem("token");
   const links = auth ? <SignedInLinks /> : <SignedOutLinks />;
 
   return (

@@ -18,10 +18,10 @@ class App extends React.Component {
           <NavbarApp />
           <Switch>
             <Route exact path="/" component={Dashboard} />
-            <Route path="/list/:id" component={ListDetails} />
-            <Route path="/task/:id" component={TaskDetails} />
             <Route path="/signup" component={SignUp} />
             <Route path="/signin" component={SignIn} />
+            <Route path="/list/:id" component={ListDetails} />
+            <Route path="/task/:id" component={TaskDetails} />
             {/* <Route path="/create/list" component={CreateList} /> */}
             {/* <Route path="/create/task" component={CreateTask} /> */}
             <Route path="*" component={() => "404 PAGE NOT FOUND"} />

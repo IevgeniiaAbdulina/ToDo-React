@@ -2,6 +2,7 @@ export const SIGN_IN = "SIGN_IN";
 export const SIGN_IN_ERROR = "SIGN_IN_ERROR";
 export const SIGN_UP = "SIGN_UP";
 export const SIGN_OUT = "SIGN_OUT";
+export const IS_SIGNED_IN = "IS_SIGNED_IN";
 
 export const GET_LISTS = "GET_LISTS";
 export const NEW_LIST = "NEW_LIST";

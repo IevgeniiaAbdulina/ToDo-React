@@ -56,9 +56,9 @@ class SignIn extends Component {
   };
 
   render() {
-    const { authError } = this.props;
+    const { authError, auth } = this.props;
     const token = localStorage.getItem("token");
-    if (token) return <Redirect to="/" />;
+    if (token && auth) return <Redirect to="/" />;
     return (
       <Modal isOpen={this.state.showModal} toggle={this.toggleModal}>
         <ModalHeader toggle={this.closeModal}>Sign In</ModalHeader>
