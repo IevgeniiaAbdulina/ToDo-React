@@ -2,7 +2,7 @@ import { SIGN_IN, SIGN_IN_ERROR, SIGN_OUT } from "../actions/types";
 
 const initState = {
   authError: null,
-  isSignedIn: null
+  isSignedIn: ""
 };
 
 const authReducer = (state = initState, action) => {
@@ -10,17 +10,19 @@ const authReducer = (state = initState, action) => {
     case SIGN_IN_ERROR:
       return {
         ...state,
-        authError: "SIgn IN failed"
+        authError: "Sign in failed!"
       };
     case SIGN_IN:
       return {
         ...state,
         authError: null,
-        isSignedIn: true
+        isSignedIn: action.payload.token
       };
     case SIGN_OUT:
-      console.log("SIGN OUT success");
-      return state;
+      return {
+        ...state,
+        isSignedIn: "You are not signed in!"
+      };
 
     default:
       return state;

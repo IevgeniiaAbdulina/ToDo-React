@@ -21,14 +21,14 @@ class CreateList extends Component {
   };
 
   callbackForCreatedList = () => {
-    console.log("on FOrm Submit after call");
+    // console.log("on FOrm Submit after call");
     this.setState({
       listName: ""
     });
   };
 
   onFormSubmit = e => {
-    console.log("LIST FORM SUBMIT");
+    // console.log("LIST FORM SUBMIT");
     e.preventDefault();
 
     this.props.createList(this.state.listName, this.callbackForCreatedList);

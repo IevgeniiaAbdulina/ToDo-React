@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import DashboardHeader from "./DashboardHeader";
 import ListsCatalog from "../lists/ListsCatalog";
@@ -14,8 +15,9 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { lists } = this.props;
-    const { tasks } = this.props;
+    const { lists, tasks, auth } = this.props;
+    if (!auth) return <Redirect to="/signin" />;
+
     return (
       <div>
         <DashboardHeader />
@@ -29,13 +31,15 @@ Dashboard.propTypes = {
   getLists: PropTypes.func.isRequired,
   getTasks: PropTypes.func.isRequired,
   lists: PropTypes.array.isRequired,
-  tasks: PropTypes.array.isRequired
+  tasks: PropTypes.array.isRequired,
+  auth: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => {
   return {
     lists: state.listsState.lists,
-    tasks: state.tasksState.tasks
+    tasks: state.tasksState.tasks,
+    auth: state.auth.isSignedIn
   };
 };
 

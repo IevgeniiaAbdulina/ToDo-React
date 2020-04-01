@@ -13,6 +13,7 @@ import {
   ModalFooter,
   Button
 } from "reactstrap";
+import { Redirect } from "react-router-dom";
 
 class SignUp extends Component {
   constructor(props) {
@@ -33,9 +34,7 @@ class SignUp extends Component {
   };
 
   closeModal = e => {
-    console.log("CLOSE MODAl");
     e.preventDefault();
-
     this.toggleModal();
     this.setState({});
   };
@@ -47,12 +46,13 @@ class SignUp extends Component {
   };
 
   onFormSubmit = e => {
-    console.log("SUBMIT FORM");
     e.preventDefault();
-    console.log("This state: ", this.state);
+    // console.log("This state: ", this.state);
   };
 
   render() {
+    const token = localStorage.getItem("token");
+    if (token) return <Redirect to="/" />;
     return (
       <Modal isOpen={this.state.showModal} toggle={this.toggleModal}>
         <ModalHeader toggle={this.closeModal}>Sign Up</ModalHeader>

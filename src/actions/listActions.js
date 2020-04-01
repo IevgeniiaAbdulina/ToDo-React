@@ -33,7 +33,7 @@ export const createList = (listData, callback) => dispatch => {
       name: listData
     })
     .then(list => {
-      console.log("CREATE NEW LIST");
+      // console.log("CREATE NEW LIST");
       dispatch({
         type: NEW_LIST,
         payload: list
@@ -49,7 +49,7 @@ export const createList = (listData, callback) => dispatch => {
 
 export const deleteList = listID => dispatch => {
   axiosInstance.delete("/api/lists/" + listID).then(list => {
-    console.log("DELETE LIST", list);
+    // console.log("DELETE LIST", list);
     dispatch({
       type: DELETE_LIST,
       payload: list

@@ -6,10 +6,11 @@ import SignedOutLinks from "./SignedOutLinks";
 import { connect } from "react-redux";
 
 const NavbarApp = props => {
-  const { auth } = props;
-  console.log(auth);
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+
+  const { auth } = props;
+  const links = auth ? <SignedInLinks /> : <SignedOutLinks />;
 
   return (
     <div>
@@ -18,8 +19,7 @@ const NavbarApp = props => {
         <NavbarToggler onClick={toggle} />
 
         <Collapse isOpen={isOpen} navbar>
-          <SignedOutLinks />
-          <SignedInLinks />
+          {links}
         </Collapse>
       </Navbar>
     </div>

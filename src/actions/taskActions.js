@@ -15,7 +15,7 @@ export const getTasks = () => dispatch => {
       listID: "5e7a53719b60e50017478d12"
     })
     .then(tasks => {
-      console.log("GET ALL TASKS", tasks);
+      // console.log("GET ALL TASKS", tasks);
       dispatch({
         type: GET_TASKS,
         payload: tasks
@@ -27,7 +27,7 @@ export const getTasks = () => dispatch => {
 };
 
 export const visibilityFilter = tasks => dispatch => {
-  console.log("ACTIVE TASKS: ", tasks);
+  // console.log("ACTIVE TASKS: ", tasks);
   dispatch({
     type: SHOW_ACTIVE_TASKS,
     payload: tasks,

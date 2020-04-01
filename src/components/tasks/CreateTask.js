@@ -17,9 +17,9 @@ class CreateTask extends Component {
   };
 
   onFormSubmit = e => {
-    console.log("TASK FORM SUBMIT");
+    // console.log("TASK FORM SUBMIT");
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
   };
   render() {
     return (

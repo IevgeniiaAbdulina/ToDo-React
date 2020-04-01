@@ -12,12 +12,11 @@ export const signIn = credentials => dispatch => {
       password: credentials.userPassword
     })
     .then(auth => {
-      console.log(auth);
       localStorage.setItem("login", auth.data.login);
       localStorage.setItem("token", auth.data.token);
       dispatch({
         type: SIGN_IN,
-        payload: auth
+        payload: auth.data
       });
     })
     .catch(err => {

@@ -15,6 +15,7 @@ import {
   ModalFooter,
   Button
 } from "reactstrap";
+import { Redirect } from "react-router-dom";
 
 class SignIn extends Component {
   constructor(props) {
@@ -33,10 +34,13 @@ class SignIn extends Component {
     });
   };
 
-  closeModal = e => {
-    e.preventDefault();
+  closeModal = () => {
+    // e.preventDefault();
     this.toggleModal();
-    this.setState({});
+    this.setState({
+      userEmail: "",
+      userPassword: ""
+    });
   };
 
   handleChange = e => {
@@ -48,10 +52,13 @@ class SignIn extends Component {
   onFormSubmit = e => {
     e.preventDefault();
     this.props.signIn(this.state);
+    this.closeModal();
   };
 
   render() {
     const { authError } = this.props;
+    const token = localStorage.getItem("token");
+    if (token) return <Redirect to="/" />;
     return (
       <Modal isOpen={this.state.showModal} toggle={this.toggleModal}>
         <ModalHeader toggle={this.closeModal}>Sign In</ModalHeader>
@@ -120,7 +127,8 @@ class SignIn extends Component {
 
 const mapStateToProps = state => {
   return {
-    authError: state.auth.authError
+    authError: state.auth.authError,
+    auth: state.auth.isSignedIn
   };
 };
 

@@ -6,7 +6,7 @@ const initState = {
 };
 
 const listReducer = (state = initState, action) => {
-  console.log("listReducer ACTION: ", action);
+  // console.log("listReducer ACTION: ", action);
   switch (action.type) {
     case GET_LISTS:
       return {

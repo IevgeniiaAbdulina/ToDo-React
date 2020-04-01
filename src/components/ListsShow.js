@@ -16,11 +16,11 @@ class ListsShow extends React.Component {
   }
 
   onShowList = () => {
-    console.log("add list");
+    // console.log("add list");
   };
 
   showListsShowPage = () => {
-    console.log("setState: true = listsShow");
+    // console.log("setState: true = listsShow");
     this.setState({
       showPageLists: true
     });

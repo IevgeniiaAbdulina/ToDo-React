@@ -10,7 +10,7 @@ const Axios = props => {
   const [isUserIn, setIsUserIn] = useState(false);
 
   const postUserLogin = (emailUser, passwordUser) => {
-    console.log("axiosPOST: CALLED");
+    // console.log("axiosPOST: CALLED");
 
     axiosInstance
       .post("/api/auth", {
@@ -18,11 +18,11 @@ const Axios = props => {
         password: passwordUser
       })
       .then(res => {
-        console.log("axiosPOST: RESPONSE");
+        // console.log("axiosPOST: RESPONSE");
         localStorage.setItem("login", res.data.login);
         localStorage.setItem("token", res.data.token);
         setIsUserIn(true);
-        console.log(isUserIn);
+        // console.log(isUserIn);
       })
       .catch(err => {
         console.log(err, err.res);
