@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-
 import DashboardHeader from "./DashboardHeader";
 import ListsCatalog from "../lists/ListsCatalog";
 import { setSignedIn } from "../../actions/authActions";
@@ -18,8 +17,7 @@ class Dashboard extends Component {
 
   render() {
     const { lists, tasks, auth } = this.props;
-    // const token = localStorage.getItem("token");
-    if (!auth) return <Redirect to="/signin" />;
+    if (!auth) return <Redirect to="/" />;
 
     return (
       <div>

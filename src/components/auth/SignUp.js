@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import {
   Modal,
@@ -11,9 +13,10 @@ import {
   Input,
   FormFeedback,
   ModalFooter,
-  Button
+  Button,
+  CardText
 } from "reactstrap";
-import { Redirect } from "react-router-dom";
+import { signUp } from "../../actions/signupActions";
 
 class SignUp extends Component {
   constructor(props) {
@@ -33,10 +36,13 @@ class SignUp extends Component {
     });
   };
 
-  closeModal = e => {
-    e.preventDefault();
+  closeModal = () => {
     this.toggleModal();
-    this.setState({});
+    this.setState({
+      userName: "",
+      userEmail: "",
+      userPassword: ""
+    });
   };
 
   handleChange = e => {
@@ -47,12 +53,13 @@ class SignUp extends Component {
 
   onFormSubmit = e => {
     e.preventDefault();
-    // console.log("This state: ", this.state);
+    this.props.signUp(this.state);
   };
 
   render() {
-    const token = localStorage.getItem("token");
-    if (token) return <Redirect to="/" />;
+    const { signup, signupError } = this.props;
+    if (signup) return <Redirect to="/signin" />;
+
     return (
       <Modal isOpen={this.state.showModal} toggle={this.toggleModal}>
         <ModalHeader toggle={this.closeModal}>Sign Up</ModalHeader>
@@ -101,12 +108,20 @@ class SignUp extends Component {
               </Col>
             </FormGroup>
           </Form>
+
+          <div>
+            {signupError ? (
+              <CardText className="text-danger">{signupError}</CardText>
+            ) : (
+              <CardText>{signup}</CardText>
+            )}
+          </div>
         </ModalBody>
 
         <ModalFooter>
           <Col>
             <h6>
-              Already have an account?<NavLink to="/signin"> Sign In</NavLink>
+              Already have an account?<NavLink to="/signin"> Sign in</NavLink>
             </h6>
           </Col>
           <Button type="submit" color="primary" onClick={this.onFormSubmit}>
@@ -118,4 +133,17 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+const mapStateToProps = state => {
+  return {
+    signupError: state.signupState.signupError,
+    signup: state.signupState.signup
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    signUp: credentials => dispatch(signUp(credentials))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

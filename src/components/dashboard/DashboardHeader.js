@@ -9,9 +9,6 @@ const DashboardHeader = () => {
   // };
   return (
     <div className="dashboard-header">
-      {/* <div>Create new list here > </div>
-      <NavLink to="/create/list">Create List</NavLink> */}
-
       <Container fluid={true}>
         <Row className="dashboard-header-title">
           <Col>
@@ -25,7 +22,6 @@ const DashboardHeader = () => {
               onClick={() => <CreateList />}
             >
               Add List
-              {/* <NavLink href="/">Add List</NavLink> */}
             </Button>
           </Col>
         </Row>

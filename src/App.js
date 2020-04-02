@@ -7,6 +7,7 @@ import ListDetails from "./components/lists/ListDetails";
 import TaskDetails from "./components/tasks/TaskDetails";
 import SignUp from "./components/auth/SignUp";
 import SignIn from "./components/auth/SignIn";
+import DashboardTitle from "./components/dashboard/DashboardTitle";
 // import CreateList from "./components/lists/CreateList";
 // import CreateTask from "./components/tasks/CreateTask";
 
@@ -17,7 +18,8 @@ class App extends React.Component {
         <div>
           <NavbarApp />
           <Switch>
-            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/" component={DashboardTitle} />
+            <Route path="/dashboard" component={Dashboard} />
             <Route path="/signup" component={SignUp} />
             <Route path="/signin" component={SignIn} />
             <Route path="/list/:id" component={ListDetails} />

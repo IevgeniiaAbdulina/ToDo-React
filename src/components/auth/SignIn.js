@@ -13,7 +13,8 @@ import {
   Input,
   FormFeedback,
   ModalFooter,
-  Button
+  Button,
+  CardText
 } from "reactstrap";
 import { Redirect } from "react-router-dom";
 
@@ -35,7 +36,6 @@ class SignIn extends Component {
   };
 
   closeModal = () => {
-    // e.preventDefault();
     this.toggleModal();
     this.setState({
       userEmail: "",
@@ -52,13 +52,12 @@ class SignIn extends Component {
   onFormSubmit = e => {
     e.preventDefault();
     this.props.signIn(this.state);
-    this.closeModal();
   };
 
   render() {
-    const { authError, auth } = this.props;
-    const token = localStorage.getItem("token");
-    if (token && auth) return <Redirect to="/" />;
+    const { auth, authError } = this.props;
+    if (auth) return <Redirect to="/dashboard" />;
+
     return (
       <Modal isOpen={this.state.showModal} toggle={this.toggleModal}>
         <ModalHeader toggle={this.closeModal}>Sign In</ModalHeader>
@@ -107,6 +106,11 @@ class SignIn extends Component {
               </Col>
             </FormGroup>
           </Form>
+          <div>
+            {authError ? (
+              <CardText className="text-danger">{authError}</CardText>
+            ) : null}
+          </div>
         </ModalBody>
 
         <ModalFooter>
@@ -118,7 +122,6 @@ class SignIn extends Component {
           <Button type="submit" color="primary" onClick={this.onFormSubmit}>
             Sign In
           </Button>
-          <div>{authError ? <p>{authError}</p> : null}</div>
         </ModalFooter>
       </Modal>
     );

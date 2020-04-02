@@ -15,7 +15,8 @@ const authReducer = (state = initState, action) => {
     case SIGN_IN_ERROR:
       return {
         ...state,
-        authError: "Sign in failed!"
+        authError:
+          "Sorry your email or password was incorrect! Please try again."
       };
     case SIGN_IN:
       return {
