@@ -1,50 +1,37 @@
 import React from "react";
-import Navbar from "./components/navbar/Navbar";
-import ListsTable from "./components/lists/ListsTable";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-// import axios from "axios";
-
-// const axiosInstance = axios.create({
-//   baseURL: "https://cc19todoapp.herokuapp.com"
-// });
+import Dashboard from "./components/dashboard/Dashboard";
+import NavbarApp from "./components/layout/NavbarApp";
+import ListDetails from "./components/lists/ListDetails";
+import TaskDetails from "./components/tasks/TaskDetails";
+import SignUp from "./components/auth/SignUp";
+import SignIn from "./components/auth/SignIn";
+import DashboardTitle from "./components/dashboard/DashboardTitle";
+// import CreateList from "./components/lists/CreateList";
+// import CreateTask from "./components/tasks/CreateTask";
 
 class App extends React.Component {
-  state = {
-    _id: "",
-    lists: []
-  };
-
-  componentDidMount() {
-    // axiosInstance
-    //   .get("/api/users/me")
-    //   .then(res => console.log(res.data))
-    //   .then(res => this.setState({ userID: res.data }));
-  }
-
   render() {
     return (
-      <div>
-        <header>
-          <Navbar />
-        </header>
-        <div className="container-fluid">
-          <div className="row flex-xl-nowrap">
-            <div className="col-12 col-md-3 col-xl-2">
-              Button
-              <button className="">Add List</button>
-            </div>
-            <main className="col-12 col-md-9 col-xl-8" role="main">
-              <ListsTable />
-            </main>
-          </div>
+      <BrowserRouter>
+        <div>
+          <NavbarApp />
+          <Switch>
+            <Route exact path="/" component={DashboardTitle} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/signin" component={SignIn} />
+            <Route path="/list/:id" component={ListDetails} />
+            <Route path="/task/:id" component={TaskDetails} />
+            {/* <Route path="/create/list" component={CreateList} /> */}
+            {/* <Route path="/create/task" component={CreateTask} /> */}
+            <Route path="*" component={() => "404 PAGE NOT FOUND"} />
+          </Switch>
         </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }
 
 export default App;
-
-// npm start
