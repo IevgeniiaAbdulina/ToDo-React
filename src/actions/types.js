@@ -6,6 +6,9 @@ export const SIGN_OUT = "SIGN_OUT";
 export const SIGN_UP = "SIGN_UP";
 export const SIGN_UP_ERROR = "SIGN_UP_ERROR";
 
+export const SPINNER_ON = "SPINNER_ON";
+export const SPINNER_OFF = "SPINNER_OFF";
+
 export const GET_LISTS = "GET_LISTS";
 export const NEW_LIST = "NEW_LIST";
 export const DELETE_LIST = "DELETE_LIST";

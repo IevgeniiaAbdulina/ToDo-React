@@ -14,7 +14,8 @@ import {
   FormFeedback,
   ModalFooter,
   Button,
-  CardText
+  CardText,
+  Spinner,
 } from "reactstrap";
 import { signUp } from "../../actions/signupActions";
 
@@ -26,13 +27,13 @@ class SignUp extends Component {
       showModal: true,
       userName: "",
       userEmail: "",
-      userPassword: ""
+      userPassword: "",
     };
   }
 
   toggleModal = () => {
     this.setState({
-      showModal: !this.state.showModal
+      showModal: !this.state.showModal,
     });
   };
 
@@ -41,23 +42,24 @@ class SignUp extends Component {
     this.setState({
       userName: "",
       userEmail: "",
-      userPassword: ""
+      userPassword: "",
     });
+    this.props.history.push("/");
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  onFormSubmit = e => {
+  onFormSubmit = (e) => {
     e.preventDefault();
     this.props.signUp(this.state);
   };
 
   render() {
-    const { signup, signupError } = this.props;
+    const { signup, signupError, loadingSpinner } = this.props;
     if (signup) return <Redirect to="/signin" />;
 
     return (
@@ -125,7 +127,7 @@ class SignUp extends Component {
             </h6>
           </Col>
           <Button type="submit" color="primary" onClick={this.onFormSubmit}>
-            Sign Up
+            Sign Up {loadingSpinner && <Spinner size="sm color=" light />}
           </Button>
         </ModalFooter>
       </Modal>
@@ -133,16 +135,17 @@ class SignUp extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     signupError: state.signupState.signupError,
-    signup: state.signupState.signup
+    signup: state.signupState.signup,
+    loadingSpinner: state.signupState.loadingSpinner,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    signUp: credentials => dispatch(signUp(credentials))
+    signUp: (credentials) => dispatch(signUp(credentials)),
   };
 };
 

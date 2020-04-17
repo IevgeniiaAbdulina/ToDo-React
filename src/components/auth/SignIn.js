@@ -14,7 +14,8 @@ import {
   FormFeedback,
   ModalFooter,
   Button,
-  CardText
+  CardText,
+  Spinner,
 } from "reactstrap";
 import { Redirect } from "react-router-dom";
 
@@ -25,13 +26,13 @@ class SignIn extends Component {
     this.state = {
       showModal: true,
       userEmail: "",
-      userPassword: ""
+      userPassword: "",
     };
   }
 
   toggleModal = () => {
     this.setState({
-      showModal: !this.state.showModal
+      showModal: !this.state.showModal,
     });
   };
 
@@ -39,25 +40,25 @@ class SignIn extends Component {
     this.toggleModal();
     this.setState({
       userEmail: "",
-      userPassword: ""
+      userPassword: "",
     });
+    this.props.history.push("/");
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  onFormSubmit = e => {
+  onFormSubmit = (e) => {
     e.preventDefault();
     this.props.signIn(this.state);
   };
 
   render() {
-    const { auth, authError } = this.props;
+    const { auth, authError, loadingSpinner } = this.props;
     if (auth) return <Redirect to="/dashboard" />;
-
     return (
       <Modal isOpen={this.state.showModal} toggle={this.toggleModal}>
         <ModalHeader toggle={this.closeModal}>Sign In</ModalHeader>
@@ -120,7 +121,7 @@ class SignIn extends Component {
             </h6>
           </Col>
           <Button type="submit" color="primary" onClick={this.onFormSubmit}>
-            Sign In
+            Sign In {loadingSpinner && <Spinner size="sm color=" light />}
           </Button>
         </ModalFooter>
       </Modal>
@@ -128,16 +129,17 @@ class SignIn extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     authError: state.auth.authError,
-    auth: state.auth.isSignedIn
+    auth: state.auth.isSignedIn,
+    loadingSpinner: state.auth.loadingSpinner,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    signIn: credentials => dispatch(signIn(credentials))
+    signIn: (credentials) => dispatch(signIn(credentials)),
   };
 };
 

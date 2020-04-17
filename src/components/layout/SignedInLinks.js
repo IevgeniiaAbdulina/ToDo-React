@@ -6,15 +6,17 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Nav
+  Nav,
 } from "reactstrap";
 
-const SignedInLinks = props => {
+const SignedInLinks = (props) => {
+  const login = localStorage.getItem("login");
+
   return (
     <Nav className="ml-auto" navbar>
       <UncontrolledDropdown nav inNavbar>
         <DropdownToggle nav caret>
-          <span className="nav-links"> Welcome, Jane </span>
+          <span className="nav-links"> Welcome, {login} </span>
         </DropdownToggle>
 
         <DropdownMenu right>
@@ -27,9 +29,9 @@ const SignedInLinks = props => {
   );
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    signOut: () => dispatch(signOut())
+    signOut: () => dispatch(signOut()),
   };
 };
 

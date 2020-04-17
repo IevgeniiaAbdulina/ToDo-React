@@ -1,12 +1,10 @@
 import React from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 
-import CreateList from "../lists/CreateList";
-
 const DashboardHeader = () => {
-  // const createListButton = () => {
-  //   return <CreateList />;
-  // };
+  const buttonClicked = () => {
+    console.log("ADD LIST CLICKED");
+  };
   return (
     <div className="dashboard-header">
       <Container fluid={true}>
@@ -18,10 +16,9 @@ const DashboardHeader = () => {
             <Button
               color="primary"
               className="create-list-button"
-              // onClick={createListButton}
-              onClick={() => <CreateList />}
+              onClick={buttonClicked}
             >
-              Add List
+              New list
             </Button>
           </Col>
         </Row>

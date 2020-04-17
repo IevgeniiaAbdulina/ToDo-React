@@ -10,32 +10,28 @@ class CreateList extends Component {
     super(props);
 
     this.state = {
-      listName: ""
+      listName: "",
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  callbackForCreatedList = () => {
-    // console.log("on FOrm Submit after call");
-    this.setState({
-      listName: ""
-    });
-  };
+  // callbackForCreatedList = () => {
+  //   this.setState({
+  //     listName: "",
+  //   });
+  // };
 
-  onFormSubmit = e => {
-    // console.log("LIST FORM SUBMIT");
+  onFormSubmit = (e) => {
     e.preventDefault();
-
-    this.props.createList(this.state.listName, this.callbackForCreatedList);
-    // console.log("on FOrm Submit after call");
-    // this.setState({
-    //   listName: ""
-    // });
+    this.props.createList(
+      this.state.listName
+      // this.callbackForCreatedList
+    );
   };
 
   render() {
@@ -73,7 +69,7 @@ class CreateList extends Component {
 }
 
 CreateList.propTypes = {
-  createList: PropTypes.func.isRequired
+  createList: PropTypes.func.isRequired,
 };
 
 export default connect(null, { createList })(CreateList);

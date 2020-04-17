@@ -8,20 +8,21 @@ const ListsCatalog = ({ lists, tasks }) => {
   const createListForm = lists.length < 3 ? <CreateList /> : null;
   const createListsCatalog = lists.length ? (
     lists &&
-    lists.map(list => {
+    lists.map((list) => {
       return <ListSummary key={list._id} list={list} tasks={tasks} />;
     })
   ) : (
-    <Col style={{ color: "#fff" }}>No lists yet...</Col>
+    <Col>
+      <p>No lists yet...</p>
+      <p>Please, click on a "New list" button to create a new list</p>
+    </Col>
   );
 
   return (
-    <div>
-      <CardColumns>
-        {createListForm}
-        {createListsCatalog}
-      </CardColumns>
-    </div>
+    <CardColumns>
+      {createListForm}
+      {createListsCatalog}
+    </CardColumns>
   );
 };
 
