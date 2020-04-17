@@ -5,7 +5,7 @@ const SignedOutLinks = () => {
   return (
     <Nav className="ml-auto" navbar>
       <NavItem>
-        <NavLink href="/signup" style={{ color: "#fff" }}>
+        <NavLink href="/signup" style={{ color: "#06d8d8" }}>
           Sign Up
         </NavLink>
       </NavItem>

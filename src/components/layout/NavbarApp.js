@@ -5,12 +5,11 @@ import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
 import { connect } from "react-redux";
 
-const NavbarApp = props => {
+const NavbarApp = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
   const { auth } = props;
-  // const token = localStorage.getItem("token");
   const links = auth ? <SignedInLinks /> : <SignedOutLinks />;
 
   return (
@@ -27,9 +26,9 @@ const NavbarApp = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    auth: state.auth.isSignedIn
+    auth: state.auth.isSignedIn,
   };
 };
 

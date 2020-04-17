@@ -28,7 +28,7 @@ body {
   margin-top: 3.75em;
   color: #fff;
   background: #11064d;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .nav-links,
@@ -36,6 +36,18 @@ body {
 .dropdown-toggle.nav-link {
   color: #fff;
   font-weight: 500;
+}
+
+/* DASHBOARD TITLE Link Style */
+button.dashboard-button {
+  font-size: 1em;
+  background-color: #06d8d8;
+  border-color: #06d8d8;
+}
+
+button.dashboard-title:hover {
+  background-color: #06caca;
+  border-color: #06caca;
 }
 
 /* DASHBOARD HEADER Style */

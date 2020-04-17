@@ -9,7 +9,7 @@ import { getLists } from "../../actions/listActions";
 import { getTasks } from "../../actions/taskActions";
 
 class Dashboard extends Component {
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.props.setSignedIn();
     this.props.getLists();
     this.props.getTasks();
@@ -34,14 +34,14 @@ Dashboard.propTypes = {
   getTasks: PropTypes.func.isRequired,
   lists: PropTypes.array.isRequired,
   tasks: PropTypes.array.isRequired,
-  auth: PropTypes.string.isRequired
+  auth: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     lists: state.listsState.lists,
     tasks: state.tasksState.tasks,
-    auth: state.auth.isSignedIn
+    auth: state.auth.isSignedIn,
   };
 };
 
