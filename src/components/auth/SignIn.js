@@ -34,6 +34,7 @@ class SignIn extends Component {
     this.setState({
       showModal: !this.state.showModal,
     });
+    this.props.history.push("/");
   };
 
   closeModal = () => {
@@ -49,6 +50,12 @@ class SignIn extends Component {
     this.setState({
       [e.target.name]: e.target.value,
     });
+  };
+
+  keyPressed = (e) => {
+    if (e.key === "Enter") {
+      this.props.signIn(this.state);
+    }
   };
 
   onFormSubmit = (e) => {
@@ -102,6 +109,7 @@ class SignIn extends Component {
                   placeholder="Password"
                   autoComplete="current-password"
                   onChange={this.handleChange}
+                  onKeyPress={this.keyPressed}
                 />
                 <FormFeedback></FormFeedback>
               </Col>
@@ -121,7 +129,7 @@ class SignIn extends Component {
             </h6>
           </Col>
           <Button type="submit" color="primary" onClick={this.onFormSubmit}>
-            Sign In {loadingSpinner && <Spinner size="sm color=" light />}
+            Sign In {loadingSpinner && <Spinner size="sm" color="light" />}
           </Button>
         </ModalFooter>
       </Modal>
