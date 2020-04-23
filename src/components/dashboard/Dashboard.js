@@ -25,9 +25,9 @@ class Dashboard extends Component {
     this.props.getTasks();
   }
 
-  listForm = () => {
+  listFormShow = () => {
     this.setState({
-      listFormIsOpen: true,
+      listFormIsOpen: !this.state.listFormIsOpen,
     });
   };
 
@@ -41,7 +41,7 @@ class Dashboard extends Component {
 
     return (
       <div>
-        <DashboardHeader newListForm={this.listForm} />
+        <DashboardHeader newListForm={this.listFormShow} />
         <CardColumns>
           {createListForm}
           <ListsCatalog lists={lists} tasks={tasks} />

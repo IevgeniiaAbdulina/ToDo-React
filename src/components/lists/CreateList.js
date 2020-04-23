@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { Card, FormGroup, Input, Col, Button } from "reactstrap";
 
 import { createList } from "../../actions/listActions";
+import ListSummary from "./ListSummary";
 
 class CreateList extends Component {
   constructor(props) {
@@ -11,8 +12,16 @@ class CreateList extends Component {
 
     this.state = {
       listName: "",
+      showForm: true,
     };
   }
+
+  closeForm = () => {
+    this.setState({
+      listName: "",
+      showForm: !this.state.showForm,
+    });
+  };
 
   handleChange = (e) => {
     this.setState({
@@ -20,51 +29,45 @@ class CreateList extends Component {
     });
   };
 
-  // callbackForCreatedList = () => {
-  //   this.setState({
-  //     listName: "",
-  //   });
-  // };
-
   onFormSubmit = (e) => {
     e.preventDefault();
-    this.props.createList(
-      this.state.listName
-      // this.callbackForCreatedList
-    );
+    this.props.createList(this.state.listName);
+    this.closeForm();
   };
 
   render() {
-    return (
-      <div>
-        <Col>
-          <Card className="create-list-card">
-            <FormGroup className="create-list-form">
-              <Input
-                required
-                type="text"
-                name="listName"
-                placeholder="List title ..."
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <div className="button-container">
-              <Button
-                size="sm"
-                outline
-                color="secondary"
-                className="ic-close-form"
-              >
-                Cancel
-              </Button>
-              <Button size="sm" color="primary" onClick={this.onFormSubmit}>
-                Save
-              </Button>
-            </div>
-          </Card>
-        </Col>
-      </div>
-    );
+    const isOpen = this.state.showForm;
+    const createListCard = isOpen ? (
+      <Col>
+        <Card className="create-list-card">
+          <FormGroup className="create-list-form">
+            <Input
+              required
+              type="text"
+              name="listName"
+              placeholder="List title ..."
+              onChange={this.handleChange}
+            />
+          </FormGroup>
+          <div className="button-container">
+            <Button
+              size="sm"
+              outline
+              color="secondary"
+              className="ic-close-form"
+              onClick={this.closeForm}
+            >
+              Cancel
+            </Button>
+            <Button size="sm" color="primary" onClick={this.onFormSubmit}>
+              Save
+            </Button>
+          </div>
+        </Card>
+      </Col>
+    ) : null;
+
+    return <>{createListCard}</>;
   }
 }
 

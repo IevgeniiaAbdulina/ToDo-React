@@ -22,20 +22,16 @@ export const getLists = () => (dispatch) => {
     });
 };
 
-export const createList = (listData, callback) => (dispatch) => {
+export const createList = (listData) => (dispatch) => {
   axiosInstance
     .post("/api/lists", {
       name: listData,
     })
     .then((list) => {
-      // console.log("CREATE NEW LIST");
       dispatch({
         type: NEW_LIST,
         payload: list,
       });
-      if (callback !== undefined) {
-        callback();
-      }
     })
     .catch((err) => {
       console.log(err);
