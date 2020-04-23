@@ -1,10 +1,11 @@
 import React from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 
-const DashboardHeader = () => {
+const DashboardHeader = (props) => {
   const buttonClicked = () => {
-    console.log("ADD LIST CLICKED");
+    props.newListForm();
   };
+
   return (
     <div className="dashboard-header">
       <Container fluid={true}>
