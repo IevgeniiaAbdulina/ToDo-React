@@ -40,7 +40,6 @@ export const createList = (listData) => (dispatch) => {
 
 export const deleteList = (listID) => (dispatch) => {
   axiosInstance.delete("/api/lists/" + listID).then((list) => {
-    // console.log("DELETE LIST", list);
     dispatch({
       type: DELETE_LIST,
       payload: list,

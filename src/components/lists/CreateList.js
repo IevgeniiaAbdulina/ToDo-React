@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { Card, FormGroup, Input, Col, Button } from "reactstrap";
 
 import { createList } from "../../actions/listActions";
-import ListSummary from "./ListSummary";
 
 class CreateList extends Component {
   constructor(props) {

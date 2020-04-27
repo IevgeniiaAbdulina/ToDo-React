@@ -6,21 +6,20 @@ class CreateTask extends Component {
     super(props);
 
     this.state = {
-      taskName: ""
+      taskName: "",
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  onFormSubmit = e => {
-    // console.log("TASK FORM SUBMIT");
+  onFormSubmit = (e) => {
     e.preventDefault();
-    // console.log(this.state);
   };
+
   render() {
     return (
       <>
