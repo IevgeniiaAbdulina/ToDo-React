@@ -1,11 +1,9 @@
 import React from "react";
-import { CardColumns, Col } from "reactstrap";
+import { Col } from "reactstrap";
 
 import ListSummary from "./ListSummary";
-import CreateList from "./CreateList";
 
 const ListsCatalog = ({ lists, tasks }) => {
-  const createListForm = lists.length < 3 ? <CreateList /> : null;
   const createListsCatalog = lists.length ? (
     lists &&
     lists.map((list) => {
@@ -13,17 +11,11 @@ const ListsCatalog = ({ lists, tasks }) => {
     })
   ) : (
     <Col>
-      <p>No lists yet...</p>
-      <p>Please, click on a "New list" button to create a new list</p>
+      <h6>No lists yet...</h6>
     </Col>
   );
 
-  return (
-    <CardColumns>
-      {createListForm}
-      {createListsCatalog}
-    </CardColumns>
-  );
+  return <>{createListsCatalog}</>;
 };
 
 export default ListsCatalog;

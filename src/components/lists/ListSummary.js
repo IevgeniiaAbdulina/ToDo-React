@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import PropTypes from "prop-types";
 import {
   Card,
   CardTitle,
@@ -9,7 +8,7 @@ import {
   Container,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
 } from "reactstrap";
 
 import TasksCatalog from "../tasks/TasksCatalog";
@@ -22,7 +21,7 @@ const ListSummary = ({ list, tasks }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  const currentTasks = tasks.filter(task => task._listID === list._id);
+  const currentTasks = tasks.filter((task) => task._listID === list._id);
   const listID = list._id;
 
   return (
@@ -47,25 +46,20 @@ const ListSummary = ({ list, tasks }) => {
                 <DropdownItem divider />
 
                 <DropdownItem>Rename list</DropdownItem>
-                {/* onClick={editList} */}
                 <DropdownItem onClick={() => list.deleteList(listID)}>
                   Delete list
                 </DropdownItem>
                 <DropdownItem divider />
 
                 <DropdownItem>Show all tasks</DropdownItem>
-                {/* onClick={getTasks} */}
                 <DropdownItem>Show all checked tasks</DropdownItem>
-                {/* onClick={setTaskChecked} */}
                 <DropdownItem>Show all unchecked tasks</DropdownItem>
-                {/* onClick={setTaskUnchecked} */}
               </DropdownMenu>
             </Dropdown>
           </CardTitle>
 
           <CardBody className="card-body-style">
             <CreateTaskLink />
-            {/* Show / hide here */}
             <CreateTask />
 
             <TasksCatalog tasks={currentTasks} />
@@ -76,11 +70,11 @@ const ListSummary = ({ list, tasks }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    isDeleteList: listID => {
+    isDeleteList: (listID) => {
       dispatch(deleteList(listID));
-    }
+    },
   };
 };
 

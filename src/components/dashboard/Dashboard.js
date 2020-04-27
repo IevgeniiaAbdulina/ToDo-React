@@ -7,22 +7,45 @@ import ListsCatalog from "../lists/ListsCatalog";
 import { setSignedIn } from "../../actions/authActions";
 import { getLists } from "../../actions/listActions";
 import { getTasks } from "../../actions/taskActions";
+import CreateList from "../lists/CreateList";
+import { CardColumns } from "reactstrap";
 
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      listFormIsOpen: false,
+    };
+  }
+
   UNSAFE_componentWillMount() {
     this.props.setSignedIn();
     this.props.getLists();
     this.props.getTasks();
   }
 
+  listFormShow = () => {
+    this.setState({
+      listFormIsOpen: !this.state.listFormIsOpen,
+    });
+  };
+
   render() {
     const { lists, tasks, auth } = this.props;
     if (!auth) return <Redirect to="/" />;
 
+    const formIsOpen = this.state.listFormIsOpen;
+    const createListForm =
+      formIsOpen && lists.length < 3 ? <CreateList /> : null;
+
     return (
       <div>
-        <DashboardHeader />
-        <ListsCatalog lists={lists} tasks={tasks} />
+        <DashboardHeader newListForm={this.listFormShow} />
+        <CardColumns>
+          {createListForm}
+          <ListsCatalog lists={lists} tasks={tasks} />
+        </CardColumns>
       </div>
     );
   }
