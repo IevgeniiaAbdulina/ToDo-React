@@ -13,6 +13,7 @@ body {
   background-size: 100%;
   background-position: top;
   background-color: #ebebeb !important;
+  min-height: 100%;
 }
 
 @media screen and (max-width: 600px) {
